@@ -14,7 +14,7 @@
 	// }));
 	// Estadísticas
 
-	const logo = require("../assets/img/logoprestigio.png");
+	const logo = "../assets/img/logoprestigio.png";
 	const stats = [
 		{ value: 1235, suffix: "+", label: "Clientes Satisfechos" },
 		{ value: 1698, suffix: "+", label: "Proyectos Completados" },
