@@ -1,142 +1,130 @@
 <script setup>
-	// Datos de navegación
-	// const navItems = ["Inicio", "Nosotros", "Servicios", "Páginas", "Blog"];
-	// const routeMap = {
-	// 	Inicio: "/",
-	// 	Nosotros: "/nosotros",
-	// 	Servicios: "/servicios",
-	// 	Páginas: "/paginas",
-	// 	Blog: "/blog",
-	// };
-	// const links = navItems.map((label) => ({
-	// 	label,
-	// 	to: routeMap[label] || "/",
-	// }));
-	// Estadísticas
+	import "@mdi/font/css/materialdesignicons.min.css";
+	import logo from "../assets/img/logoprestigio.png";
 
-	const logo = "../assets/img/logoprestigio.png";
 	const stats = [
-		{ value: 1235, suffix: "+", label: "Clientes Satisfechos" },
-		{ value: 1698, suffix: "+", label: "Proyectos Completados" },
-		{ value: 38, suffix: "%", label: "Reducción de Amenazas" },
-		{ value: 290, suffix: "+", label: "Miembros Expertos" },
+		{ value: 250, suffix: "+", label: "Clientes que confían en nosotros" },
+		{ value: 350, suffix: "+", label: "Servicios personalizados brindados" },
+		{ value: 45, suffix: "%", label: "Crecimiento anual sostenido" },
+		{ value: 150, suffix: "+", label: "Profesionales altamente capacitados" },
 	];
 
-	// Servicios
 	const services = [
 		{
-			icon: "mdi-account-hard-hat",
-			title: "Guardia Estático",
+			icon: "mdi mdi-account-hard-hat",
+			title: "Custodia Física",
 			description:
-				"Vigilancia fija y control de accesos con personal especializado.",
+				"Personal entrenado para la vigilancia presencial en sitios estratégicos.",
 		},
 		{
-			icon: "mdi-car-multiple",
-			title: "Patrulla Móvil",
+			icon: "mdi mdi-car-multiple",
+			title: "Patrullaje Preventivo",
 			description:
-				"Rondas periódicas en vehículo para mayor disuasión en su perímetro.",
+				"Rondas móviles en zonas designadas con presencia visible y disuasiva.",
 		},
 		{
-			icon: "mdi-camera",
-			title: "Monitoreo CCTV",
-			description: "Supervisión remota y análisis de video 24/7.",
-		},
-		{
-			icon: "mdi-alarm",
-			title: "Respuesta a Alarmas",
+			icon: "mdi mdi-camera",
+			title: "Videovigilancia",
 			description:
-				"Intervención inmediata ante cualquier activación de sistemas.",
+				"Monitoreo de cámaras y análisis de eventos críticos en tiempo real.",
 		},
 		{
-			icon: "mdi-account-group",
-			title: "Seguridad en Eventos",
-			description: "Cobertura y gestión de multitudes en eventos masivos.",
-		},
-		{
-			icon: "mdi-fence",
-			title: "Inspección Perimetral",
+			icon: "mdi mdi-alarm",
+			title: "Intervención ante Alarmas",
 			description:
-				"Revisión de cercas y accesos exteriores para evitar intrusiones.",
+				"Atención inmediata ante activación de sistemas electrónicos de alerta.",
+		},
+		{
+			icon: "mdi mdi-account-group",
+			title: "Seguridad Corporativa",
+			description:
+				"Cobertura profesional para eventos empresariales y sociales.",
+		},
+		{
+			icon: "mdi mdi-fence",
+			title: "Control Perimetral",
+			description:
+				"Supervisión continua de accesos, perímetros y zonas restringidas.",
 		},
 	];
 
-	// FAQs
 	const faqs = reactive([
 		{
-			question: "¿Cómo contrato un servicio?",
+			question: "¿Qué tipo de servicios brindan?",
 			answer:
-				"Contacte y defina necesidades; nosotros planificamos y ejecutamos.",
+				"Ofrecemos seguridad física, electrónica, monitoreo y respuesta inmediata.",
 			isOpen: false,
 		},
 		{
-			question: "¿Los guardias están asegurados?",
+			question: "¿Su personal está certificado?",
 			answer:
-				"Todos cuentan con seguro de responsabilidad civil y capacitación legal.",
+				"Sí. Todos nuestros agentes reciben formación continua y validación oficial.",
 			isOpen: false,
 		},
 		{
-			question: "¿Puedo ajustar el número de guardias?",
-			answer: "Sí, adaptamos según sus cambios operativos.",
+			question: "¿Pueden cubrir eventos especiales?",
+			answer:
+				"Contamos con protocolos y equipos especializados para cualquier tipo de evento.",
 			isOpen: false,
 		},
 	]);
+
 	const toggleFaq = (i) => (faqs[i].isOpen = !faqs[i].isOpen);
 
-	// Equipo
 	const team = [
 		{
-			name: "Juan Pérez",
-			position: "Director de Seguridad",
+			name: "Eduardo Acosta",
+			position: "Director General",
 			image: "../assets/img/logoprestigio.png",
 			socials: [],
 		},
 		{
-			name: "María López",
-			position: "Coordinadora de Operaciones",
+			name: "Laura Giménez",
+			position: "Jefa de Operaciones",
 			image: logo,
 			socials: [],
 		},
 		{
-			name: "Carlos Gómez",
-			position: "Supervisor de Zona",
+			name: "Luis Benítez",
+			position: "Coordinador de Seguridad",
 			image: "../assets/img/logoprestigio.png",
 			socials: [],
 		},
 	];
 
-	// Blog posts
 	const blogPosts = [
 		{
-			title: "Fortalezas de la Seguridad Física",
-			category: "Infraestructura",
+			title: "La importancia de la vigilancia privada",
+			category: "Seguridad",
 			date: "20 Abr, 2025",
 			excerpt:
-				"Descubra cómo fortalecer su perímetro con estrategias comprobadas.",
+				"Exploramos cómo los servicios de seguridad privada aportan valor preventivo y operativo.",
 			image: "../assets/img/logoprestigio.png",
 		},
 		{
-			title: "Control de Accesos Moderno",
+			title: "Tecnología aplicada a la seguridad",
 			category: "Tecnología",
 			date: "05 Mar, 2025",
 			excerpt:
-				"Implementaciones de control de acceso para instalaciones críticas.",
+				"Cómo los sistemas inteligentes optimizan la gestión de riesgos físicos.",
 			image: "../assets/img/logoprestigio.png",
 		},
 		{
-			title: "Rondas Efectivas",
+			title: "Protocolos en eventos masivos",
 			category: "Operaciones",
 			date: "18 Feb, 2025",
-			excerpt: "Mejores prácticas para patrullaje móvil y disuasión.",
+			excerpt:
+				"Medidas clave para mantener la seguridad y el orden en actividades de gran convocatoria.",
 			image: "https://via.placeholder.com/400x200",
 		},
 	];
 
-	// Footer
 	const quickLinks = ["Nosotros", "Servicios", "Blog", "Contacto"];
+
 	const footerSocials = [
-		{ icon: "mdi-facebook", link: "#" },
-		{ icon: "mdi-twitter", link: "#" },
-		{ icon: "mdi-linkedin", link: "#" },
+		{ icon: "mdi mdi-facebook", link: "#" },
+		{ icon: "mdi mdi-twitter", link: "#" },
+		{ icon: "mdi mdi-linkedin", link: "#" },
 	];
 
 	onMounted(() => {
