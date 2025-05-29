@@ -1290,7 +1290,7 @@
 										Dirección
 									</h4>
 									<p class="ps-text-gray-300">
-										Av. Principal 1234, Ciudad, País
+										Mayor Ruffinelli e/ Palo Santo Loma Pyta – Asunción
 									</p>
 								</div>
 							</div>
@@ -1305,8 +1305,7 @@
 									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
 										Teléfono
 									</h4>
-									<p class="ps-text-gray-300">+123 456 7890</p>
-									<p class="ps-text-gray-300">+123 456 7891</p>
+									<p class="ps-text-gray-300">0994 561 777</p>
 								</div>
 							</div>
 
@@ -1336,9 +1335,9 @@
 										Horario de Atención
 									</h4>
 									<p class="ps-text-gray-300">
-										Lunes a Viernes: 8:00 AM - 6:00 PM
+										Lunes a Viernes: 8:00 hs - 19:00 hs
 									</p>
-									<p class="ps-text-gray-300">Sábados: 9:00 AM - 1:00 PM</p>
+									<p class="ps-text-gray-300">Sábados: 9:00 hs - 13:00 hs</p>
 								</div>
 							</div>
 						</div>
@@ -1495,11 +1494,11 @@
 								<i
 									class="mdi mdi-map-marker ps-text-red-600 ps-mr-3 ps-mt-1"
 								></i>
-								<span>Av. Principal 1234, Ciudad, País</span>
+								<span>Mayor Ruffinelli e/ Palo Santo Loma Pyta – Asunción</span>
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-phone ps-text-red-600 ps-mr-3 ps-mt-1"></i>
-								<span>+123 456 7890</span>
+								<span>0994 561 777 </span>
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-email ps-text-red-600 ps-mr-3 ps-mt-1"></i>
