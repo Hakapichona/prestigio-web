@@ -193,35 +193,37 @@
 		"Control Perimetral",
 		"Otro",
 	];
-
-	const formSubmitted = ref(false);
-	const formError = ref(false);
-
 	const submitForm = () => {
-		// Validación básica
+		formError.value = false;
+		// Validación básica: campos obligatorios
 		if (!contactForm.name || !contactForm.email || !contactForm.message) {
 			formError.value = true;
 			return;
 		}
-
-		// Aquí iría el código para enviar el formulario a un backend
-		console.log("Formulario enviado:", contactForm);
-
-		// Resetear formulario y mostrar mensaje de éxito
-		formError.value = false;
-		formSubmitted.value = true;
-
-		// Resetear valores del formulario
-		contactForm.name = "";
-		contactForm.email = "";
-		contactForm.phone = "";
-		contactForm.service = "";
-		contactForm.message = "";
-
-		// Ocultar mensaje de éxito después de 5 segundos
-		setTimeout(() => {
-			formSubmitted.value = false;
-		}, 5000);
+		// Enviar correo
+		emailjsSend(
+			"service_presti", // tu Service ID
+			"template_XXXXXX", // tu Template ID
+			{
+				to_email: "destino@dominio.com", // correo receptor
+				from_name: contactForm.name,
+				from_email: contactForm.email,
+				phone: contactForm.phone,
+				service: contactForm.service,
+				message: contactForm.message,
+			}
+		)
+			.then(() => {
+				formSubmitted.value = true;
+				// Limpia formulario
+				Object.keys(contactForm).forEach((k) => (contactForm[k] = ""));
+				// Oculta mensaje tras 5s
+				setTimeout(() => (formSubmitted.value = false), 5000);
+			})
+			.catch((err) => {
+				console.error("EmailJS error:", err);
+				formError.value = true;
+			});
 	};
 
 	// Galería de fotos
@@ -1364,108 +1366,59 @@
 							Envíenos un mensaje
 						</h3>
 
-						<form @submit.prevent="submitForm">
-							<div
-								class="ps-grid ps-grid-cols-1 md:ps-grid-cols-2 ps-gap-6 ps-mb-6"
-							>
-								<div>
-									<label for="name" class="ps-block ps-text-white ps-mb-2"
-										>Nombre completo *</label
-									>
-									<input
-										type="text"
-										id="name"
-										v-model="contactForm.name"
-										class="ps-w-full ps-bg-gray-700 ps-border ps-border-gray-600 ps-rounded ps-p-3 ps-text-white ps-focus:ps-outline-none ps-focus:ps-border-red-600"
-										placeholder="Su nombre"
-										required
-									/>
-								</div>
+						<form
+							@submit.prevent="submitForm"
+							class="ps-flex ps-flex-col ps-space-y-4"
+						>
+							<!-- Campos -->
+							<input
+								type="text"
+								v-model="contactForm.name"
+								placeholder="Nombre completo *"
+								required
+							/>
+							<input
+								type="email"
+								v-model="contactForm.email"
+								placeholder="Email *"
+								required
+							/>
+							<input
+								type="tel"
+								v-model="contactForm.phone"
+								placeholder="Teléfono"
+							/>
+							<select v-model="contactForm.service">
+								<option value="">Servicio de interés</option>
+								<option v-for="opt in serviceOptions" :key="opt" :value="opt">
+									{{ opt }}
+								</option>
+							</select>
+							<textarea
+								v-model="contactForm.message"
+								placeholder="Mensaje *"
+								required
+								rows="4"
+							></textarea>
 
-								<div>
-									<label for="email" class="ps-block ps-text-white ps-mb-2"
-										>Email *</label
-									>
-									<input
-										type="email"
-										id="email"
-										v-model="contactForm.email"
-										class="ps-w-full ps-bg-gray-700 ps-border ps-border-gray-600 ps-rounded ps-p-3 ps-text-white ps-focus:ps-outline-none ps-focus:ps-border-red-600"
-										placeholder="Su email"
-										required
-									/>
-								</div>
-							</div>
-
-							<div
-								class="ps-grid ps-grid-cols-1 md:ps-grid-cols-2 ps-gap-6 ps-mb-6"
-							>
-								<div>
-									<label for="phone" class="ps-block ps-text-white ps-mb-2"
-										>Teléfono</label
-									>
-									<input
-										type="tel"
-										id="phone"
-										v-model="contactForm.phone"
-										class="ps-w-full ps-bg-gray-700 ps-border ps-border-gray-600 ps-rounded ps-p-3 ps-text-white ps-focus:ps-outline-none ps-focus:ps-border-red-600"
-										placeholder="Su teléfono"
-									/>
-								</div>
-
-								<div>
-									<label for="service" class="ps-block ps-text-white ps-mb-2"
-										>Servicio de interés</label
-									>
-									<select
-										id="service"
-										v-model="contactForm.service"
-										class="ps-w-full ps-bg-gray-700 ps-border ps-border-gray-600 ps-rounded ps-p-3 ps-text-white ps-focus:ps-outline-none ps-focus:ps-border-red-600"
-									>
-										<option value="">Seleccione un servicio</option>
-										<option
-											v-for="option in serviceOptions"
-											:key="option"
-											:value="option"
-										>
-											{{ option }}
-										</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="ps-mb-6">
-								<label for="message" class="ps-block ps-text-white ps-mb-2"
-									>Mensaje *</label
-								>
-								<textarea
-									id="message"
-									v-model="contactForm.message"
-									class="ps-w-full ps-bg-gray-700 ps-border ps-border-gray-600 ps-rounded ps-p-3 ps-text-white ps-focus:ps-outline-none ps-focus:ps-border-red-600 ps-h-32"
-									placeholder="Escriba su mensaje aquí..."
-									required
-								></textarea>
-							</div>
-
+							<!-- Mensajes de estado -->
 							<div
 								v-if="formError"
-								class="ps-bg-red-900/50 ps-border ps-border-red-600 ps-text-white ps-p-4 ps-rounded ps-mb-6"
+								class="ps-bg-red-900/50 ps-border ps-border-red-600 ps-text-white ps-p-4 ps-rounded"
 							>
 								Por favor complete todos los campos requeridos.
 							</div>
 
 							<div
 								v-if="formSubmitted"
-								class="ps-bg-green-900/50 ps-border ps-border-green-600 ps-text-white ps-p-4 ps-rounded ps-mb-6"
+								class="ps-bg-green-900/50 ps-border ps-border-green-600 ps-text-white ps-p-4 ps-rounded"
 							>
-								¡Gracias por su mensaje! Nos pondremos en contacto con usted a
-								la brevedad.
+								¡Gracias por su mensaje! Nos pondremos en contacto a la
+								brevedad.
 							</div>
 
-							<button
-								type="submit"
-								class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300 ps-w-full"
-							>
+							<!-- Botón -->
+							<button type="submit" class="ps-bg-red-600 …">
 								Enviar Mensaje
 							</button>
 						</form>
