@@ -2,6 +2,12 @@
 	import "@mdi/font/css/materialdesignicons.min.css";
 	import { onMounted, reactive, ref } from "vue";
 	import logo from "../assets/img/logoprestigio.png";
+	import ps1 from "../assets/img/ps1.jpeg";
+	import ps2 from "../assets/img/ps2.jpeg";
+	import ps3 from "../assets/img/ps3.jpeg";
+	import ps4 from "../assets/img/ps4.jpeg";
+	import ps5 from "../assets/img/ps5.jpeg";
+	import ps6 from "../assets/img/ps6.jpeg";
 
 	// Stats data
 	const stats = [
@@ -229,32 +235,32 @@
 	// Galería de fotos
 	const galleryImages = [
 		{
-			src: "../assets/img/logoprestigio.png",
+			src: ps1,
 			alt: "Equipo de seguridad en acción",
 			caption: "Nuestro equipo en operaciones especiales",
 		},
 		{
-			src: "../assets/img/logoprestigio.png",
+			src: ps2,
 			alt: "Centro de monitoreo",
 			caption: "Centro de monitoreo 24/7",
 		},
 		{
-			src: "../assets/img/logoprestigio.png",
+			src: ps3,
 			alt: "Patrulla de seguridad",
 			caption: "Unidades móviles de respuesta rápida",
 		},
 		{
-			src: "../assets/img/logoprestigio.png",
+			src: ps4,
 			alt: "Capacitación de personal",
 			caption: "Entrenamiento especializado para nuestro personal",
 		},
 		{
-			src: "../assets/img/logoprestigio.png",
+			src: ps5,
 			alt: "Tecnología de vigilancia",
 			caption: "Sistemas de última generación",
 		},
 		{
-			src: "../assets/img/logoprestigio.png",
+			src: ps6,
 			alt: "Seguridad en eventos",
 			caption: "Cobertura profesional para eventos corporativos",
 		},
@@ -461,11 +467,13 @@
 		>
 			<div class="md:ps-w-1/2 ps-text-center md:ps-text-left">
 				<h2 class="ps-text-4xl md:ps-text-5xl ps-font-bold ps-mb-4">
-					Proteja sus instalaciones
+					PROTEJA SUS INSTALACIONES CON SEGURIDAD CONFIABLE
 				</h2>
 				<p class="ps-text-gray-400 ps-mb-6 ps-text-lg">
-					Servicios profesionales de guardias, patrullaje y monitoreo para su
-					empresa.
+					Resguarde su empresa y hogar con nuestros servicios especializados de
+					vigilancia, patrullaje y monitoreo. Un equipo profesional a su
+					servicio, enfocado en brindar seguridad con compromiso y eficiencia,
+					para que usted disfrute de mayor tranquilidad.
 				</p>
 				<button
 					class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
@@ -530,20 +538,21 @@
 							Nuestra Historia
 						</h3>
 						<p class="ps-text-gray-300 ps-text-lg ps-leading-relaxed ps-mb-6">
-							<span class="ps-text-red-600 ps-font-bold">PRESTIGIO SRL</span> es
-							una empresa líder en el sector de seguridad con más de
+							<span class="ps-text-red-600 ps-font-bold">PRESTIGIO S.R.L.</span>
+							llevamos más de
 							<span class="ps-text-white ps-font-bold"
-								>28 años de trayectoria</span
-							>, fundada con el propósito de brindar un servicio diferencial y
-							personalizado adaptado a las necesidades de cada uno de nuestros
-							clientes.
+								>30 años consolidándonos </span
+							>, como una empresa referente en el sector de seguridad. Desde
+							nuestra fundación, nos hemos comprometido a ofrecer un servicio
+							diferencial, adaptado a las necesidades específicas de cada
+							cliente, con un enfoque personalizado y de calidad.
 						</p>
 
 						<p class="ps-text-gray-300 ps-text-lg ps-leading-relaxed ps-mb-6">
-							Nuestra misión siempre ha sido afrontar los múltiples desafíos del
-							sector, manteniéndonos a la vanguardia en tendencias e
-							innovaciones, tanto tecnológicas como en la constante capacitación
-							de nuestro equipo de colaboradores.
+							Nuestra misión es enfrentar los desafíos del sector con visión
+							estratégica e innovación constante. Nos mantenemos a la vanguardia
+							en tecnología y en la capacitación continua de nuestro equipo,
+							garantizando soluciones de seguridad eficientes y confiables.
 						</p>
 
 						<div
@@ -907,7 +916,7 @@
 
 		<!-- Galería de Fotos (Nueva sección) -->
 		<section id="galeria" class="ps-py-16 ps-bg-black">
-			<div class="ps-container ps-mx-auto ps-px-4">
+			<!-- <div class="ps-container ps-mx-auto ps-px-4">
 				<h2
 					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
 				>
@@ -930,7 +939,7 @@
 						<img
 							:src="image.src"
 							:alt="image.alt"
-							class="ps-w-full ps-h-64 ps-object-cover ps-transition-transform ps-duration-500 ps-group-hover:ps-scale-110"
+							class="ps-w-full ps-h-64 ps-object-contain ps-transition-transform ps-duration-500 ps-group-hover:ps-scale-110"
 						/>
 						<div
 							class="ps-absolute ps-inset-0 ps-bg-black ps-bg-opacity-50 ps-opacity-0 ps-group-hover:ps-opacity-100 ps-transition-opacity ps-duration-300 ps-flex ps-items-center ps-justify-center"
@@ -948,7 +957,17 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
+
+			<v-carousel>
+				<v-carousel-item
+					v-for="(image, index) in galleryImages"
+					:key="index"
+					class="ps-group ps-relative ps-overflow-hidden ps-rounded-lg ps-shadow-lg ps-object-contain"
+					show-arrows="hover"
+					:src="image"
+				></v-carousel-item>
+			</v-carousel>
 		</section>
 
 		<!-- FAQs -->
