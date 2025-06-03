@@ -1,3 +1,56 @@
+<script setup>
+	import { reactive, ref } from "vue";
+
+	const emit = defineEmits(["login"]);
+
+	const loading = ref(false);
+	const showPassword = ref(false);
+
+	const form = reactive({
+		email: "",
+		password: "",
+	});
+
+	const snackbar = reactive({
+		show: false,
+		message: "",
+		color: "success",
+	});
+
+	const emailRules = [
+		(v) => !!v || "Email es requerido",
+		(v) => /.+@.+\..+/.test(v) || "Email debe ser válido",
+	];
+
+	const passwordRules = [
+		(v) => !!v || "Contraseña es requerida",
+		(v) => v.length >= 6 || "Contraseña debe tener al menos 6 caracteres",
+	];
+
+	const handleSubmit = async () => {
+		loading.value = true;
+
+		// Simular llamada a API
+		setTimeout(() => {
+			if (form.email && form.password) {
+				showNotification("Inicio de sesión exitoso", "success");
+				setTimeout(() => {
+					emit("login");
+				}, 500);
+			} else {
+				showNotification("Credenciales inválidas", "error");
+			}
+			loading.value = false;
+		}, 1000);
+	};
+
+	const showNotification = (message, color = "success") => {
+		snackbar.message = message;
+		snackbar.color = color;
+		snackbar.show = true;
+	};
+</script>
+
 <template>
 	<div
 		class="ps-min-h-screen ps-flex ps-items-center ps-justify-center ps-bg-gradient-to-br ps-from-blue-500 ps-to-purple-600"
@@ -71,59 +124,6 @@
 		</v-snackbar>
 	</div>
 </template>
-
-<script setup>
-	import { reactive, ref } from "vue";
-
-	const emit = defineEmits(["login"]);
-
-	const loading = ref(false);
-	const showPassword = ref(false);
-
-	const form = reactive({
-		email: "",
-		password: "",
-	});
-
-	const snackbar = reactive({
-		show: false,
-		message: "",
-		color: "success",
-	});
-
-	const emailRules = [
-		(v) => !!v || "Email es requerido",
-		(v) => /.+@.+\..+/.test(v) || "Email debe ser válido",
-	];
-
-	const passwordRules = [
-		(v) => !!v || "Contraseña es requerida",
-		(v) => v.length >= 6 || "Contraseña debe tener al menos 6 caracteres",
-	];
-
-	const handleSubmit = async () => {
-		loading.value = true;
-
-		// Simular llamada a API
-		setTimeout(() => {
-			if (form.email && form.password) {
-				showNotification("Inicio de sesión exitoso", "success");
-				setTimeout(() => {
-					emit("login");
-				}, 500);
-			} else {
-				showNotification("Credenciales inválidas", "error");
-			}
-			loading.value = false;
-		}, 1000);
-	};
-
-	const showNotification = (message, color = "success") => {
-		snackbar.message = message;
-		snackbar.color = color;
-		snackbar.show = true;
-	};
-</script>
 
 <style scoped>
 	.ps-min-h-screen {

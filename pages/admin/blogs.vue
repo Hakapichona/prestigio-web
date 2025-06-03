@@ -8,22 +8,12 @@
 	const filterStatus = ref("Todos");
 	const sortBy = ref("Fecha (más reciente)");
 
-	const statusOptions = ["Todos", "Publicado", "Borrador"];
-	const sortOptions = [
-		"Fecha (más reciente)",
-		"Fecha (más antigua)",
-		"Título A-Z",
-		"Título Z-A",
-		"Más vistas",
-	];
-
 	const blogForm = reactive({
 		title: "",
 		slug: "",
 		excerpt: "",
 		content: "",
 		status: "draft",
-		category: "",
 		tags: "",
 		featuredImage: "",
 	});
@@ -31,8 +21,6 @@
 	const blogHeaders = [
 		{ title: "Título", key: "title", width: "40%" },
 		{ title: "Estado", key: "status", width: "10%" },
-		{ title: "Categoría", key: "category", width: "15%" },
-		{ title: "Vistas", key: "views", width: "10%" },
 		{ title: "Fecha", key: "date", width: "15%" },
 		{ title: "Acciones", key: "actions", sortable: false, width: "10%" },
 	];
@@ -49,7 +37,6 @@
 			category: "Desarrollo",
 			tags: "vue, javascript, frontend",
 			featuredImage: "/placeholder.svg?height=200&width=400",
-			views: 1250,
 			date: "2024-01-15",
 		},
 		{
@@ -63,7 +50,6 @@
 			category: "CSS",
 			tags: "css, grid, layout",
 			featuredImage: "/placeholder.svg?height=200&width=400",
-			views: 0,
 			date: "2024-01-16",
 		},
 		{
@@ -77,7 +63,6 @@
 			category: "Performance",
 			tags: "performance, optimization, web",
 			featuredImage: "/placeholder.svg?height=200&width=400",
-			views: 890,
 			date: "2024-01-14",
 		},
 	]);
@@ -313,36 +298,6 @@
 			</div>
 
 			<!-- Search and Filter -->
-			<v-card elevation="2" class="ps-mb-6">
-				<v-card-text>
-					<div class="ps-flex ps-gap-4 ps-items-center">
-						<v-text-field
-							v-model="searchQuery"
-							label="Buscar blogs..."
-							prepend-inner-icon="mdi-magnify"
-							variant="outlined"
-							density="compact"
-							class="ps-flex-1"
-						></v-text-field>
-						<v-select
-							v-model="filterStatus"
-							:items="statusOptions"
-							label="Estado"
-							variant="outlined"
-							density="compact"
-							style="min-width: 150px"
-						></v-select>
-						<v-select
-							v-model="sortBy"
-							:items="sortOptions"
-							label="Ordenar por"
-							variant="outlined"
-							density="compact"
-							style="min-width: 150px"
-						></v-select>
-					</div>
-				</v-card-text>
-			</v-card>
 
 			<!-- Blogs Table -->
 			<v-card elevation="2">
@@ -380,27 +335,6 @@
 
 					<template #item.actions="{ item }">
 						<div class="ps-flex ps-space-x-1">
-							<v-btn
-								@click="openBlogDialog(item)"
-								icon="mdi-pencil"
-								size="small"
-								variant="text"
-								color="primary"
-							></v-btn>
-							<v-btn
-								@click="duplicateBlog(item)"
-								icon="mdi-content-copy"
-								size="small"
-								variant="text"
-								color="info"
-							></v-btn>
-							<v-btn
-								@click="toggleBlogStatus(item)"
-								:icon="item.status === 'published' ? 'mdi-eye-off' : 'mdi-eye'"
-								size="small"
-								variant="text"
-								:color="item.status === 'published' ? 'warning' : 'success'"
-							></v-btn>
 							<v-btn
 								@click="deleteBlog(item.id)"
 								icon="mdi-delete"

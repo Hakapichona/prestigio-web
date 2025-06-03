@@ -1,3 +1,80 @@
+<script setup>
+	import { ref } from "vue";
+
+	defineEmits(["navigate"]);
+
+	const stats = ref([
+		{
+			title: "Total Blogs",
+			value: "24",
+			icon: "mdi-post-outline",
+			color: "primary",
+			trend: 12,
+		},
+		{
+			title: "Imágenes",
+			value: "156",
+			icon: "mdi-image-multiple",
+			color: "success",
+			trend: 8,
+		},
+	]);
+
+	const recentActivity = ref([
+		{
+			id: 1,
+			action: "Nuevo blog publicado",
+			time: "Hace 2 horas",
+			icon: "mdi-plus",
+			color: "success",
+		},
+		{
+			id: 2,
+			action: "Imagen subida",
+			time: "Hace 4 horas",
+			icon: "mdi-upload",
+			color: "info",
+		},
+		{
+			id: 3,
+			action: "Blog editado",
+			time: "Hace 1 día",
+			icon: "mdi-pencil",
+			color: "warning",
+		},
+		{
+			id: 4,
+			action: "Usuario registrado",
+			time: "Hace 2 días",
+			icon: "mdi-account-plus",
+			color: "primary",
+		},
+	]);
+
+	const shortcuts = ref([
+		{
+			title: "Nuevo Blog",
+			action: "../admin/blogs",
+			icon: "mdi-plus",
+		},
+		{
+			title: "Subir Imagen",
+			action: "images",
+			icon: "mdi-upload",
+		},
+		{
+			title: "Ver Blogs",
+			action: "blogs",
+			icon: "mdi-view-list",
+		},
+		{
+			title: "Galería",
+			action: "images",
+			icon: "mdi-view-grid",
+		},
+	]);
+</script>
+
 <template>
 	<div class="ps-p-6">
 		<div class="ps-max-w-7xl ps-mx-auto">
@@ -25,16 +102,6 @@
 							</p>
 						</div>
 						<v-icon :icon="stat.icon" :color="stat.color" size="40"></v-icon>
-					</div>
-					<div class="ps-mt-4">
-						<span
-							:class="`ps-text-sm ${stat.trend > 0 ? 'ps-text-green-600' : 'ps-text-red-600'}`"
-						>
-							{{ stat.trend > 0 ? "+" : "" }}{{ stat.trend }}%
-						</span>
-						<span class="ps-text-sm ps-text-gray-500 ps-ml-2"
-							>vs mes anterior</span
-						>
 					</div>
 				</v-card>
 			</div>
@@ -89,97 +156,6 @@
 		</div>
 	</div>
 </template>
-
-<script setup>
-	import { ref } from "vue";
-
-	defineEmits(["navigate"]);
-
-	const stats = ref([
-		{
-			title: "Total Blogs",
-			value: "24",
-			icon: "mdi-post-outline",
-			color: "primary",
-			trend: 12,
-		},
-		{
-			title: "Imágenes",
-			value: "156",
-			icon: "mdi-image-multiple",
-			color: "success",
-			trend: 8,
-		},
-		{
-			title: "Visitas",
-			value: "2,847",
-			icon: "mdi-eye",
-			color: "info",
-			trend: -3,
-		},
-		{
-			title: "Usuarios",
-			value: "89",
-			icon: "mdi-account-group",
-			color: "warning",
-			trend: 15,
-		},
-	]);
-
-	const recentActivity = ref([
-		{
-			id: 1,
-			action: "Nuevo blog publicado",
-			time: "Hace 2 horas",
-			icon: "mdi-plus",
-			color: "success",
-		},
-		{
-			id: 2,
-			action: "Imagen subida",
-			time: "Hace 4 horas",
-			icon: "mdi-upload",
-			color: "info",
-		},
-		{
-			id: 3,
-			action: "Blog editado",
-			time: "Hace 1 día",
-			icon: "mdi-pencil",
-			color: "warning",
-		},
-		{
-			id: 4,
-			action: "Usuario registrado",
-			time: "Hace 2 días",
-			icon: "mdi-account-plus",
-			color: "primary",
-		},
-	]);
-
-	const shortcuts = ref([
-		{
-			title: "Nuevo Blog",
-			action: "blogs",
-			icon: "mdi-plus",
-		},
-		{
-			title: "Subir Imagen",
-			action: "images",
-			icon: "mdi-upload",
-		},
-		{
-			title: "Ver Blogs",
-			action: "blogs",
-			icon: "mdi-view-list",
-		},
-		{
-			title: "Galería",
-			action: "images",
-			icon: "mdi-view-grid",
-		},
-	]);
-</script>
 
 <style scoped>
 	.ps-p-6 {
