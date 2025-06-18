@@ -1,6 +1,6 @@
 <script setup>
 	import ParticlesBackground from "@/components/ParticlesBackground.vue";
-import { ref } from "vue";
+	import { ref } from "vue";
 	// Blog posts
 	const blogPosts = ref([
 		{
@@ -146,51 +146,6 @@ import { ref } from "vue";
 		</section>
 
 		<!-- Categorías -->
-	
-
-		<!-- Suscripción al Newsletter -->
-		<section class="ps-py-16 ps-bg-gray-900 ps-relative ps-overflow-hidden">
-			<!-- <div class="ps-container ps-mx-auto ps-px-6">
-				<div
-					class="ps-max-w-xl ps-mx-auto ps-bg-gray-800 ps-rounded-lg ps-p-8 ps-relative"
-				>
-					<div class="ps-relative ps-z-10">
-						<h2 class="ps-text-2xl ps-font-bold ps-text-center ps-mb-4">
-							Suscríbase a nuestro 
-						</h2>ss
-						<p class="ps-text-gray-400 ps-text-center ps-mb-6">
-							Reciba las últimas noticias y artículos directamente en su bandeja
-							de entrada.
-						</p>
-						<div class="ps-flex ps-flex-col md:ps-flex-row ps-gap-4">
-							<input
-								type="email"
-								placeholder="Su correo electrónico"
-								class="ps-bg-gray-700 ps-border ps-border-gray-600 ps-rounded-md ps-px-4 ps-py-3 ps-text-white ps-flex-grow focus:ps-outline-none focus:ps-border-red-600 ps-transition-colors ps-duration-300"
-							/>
-							<button
-								class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded-md ps-hover:ps-bg-red-700 ps-transition ps-duration-300 ps-transform ps-hover:ps-scale-105 ps-relative ps-overflow-hidden ps-group"
-							>
-								<span class="ps-relative ps-z-10">Suscribirse</span>
-								<span
-									class="ps-absolute ps-inset-0 ps-bg-white/20 ps-transform ps-translate-y-full ps-group-hover:ps-translate-y-0 ps-transition-transform ps-duration-300"
-								></span>
-							</button>
-						</div>
-					</div>
-
-					<-- Efecto de partículas de fondo -->
-					<div class="ps-absolute ps-inset-0 ps-pointer-events-none">
-						<div
-							v-for="i in 10"
-							:key="`newsletter-particle-${i}`"
-							class="ps-absolute ps-rounded-full ps-bg-white/10"
-							:style="randomParticleStyle()"
-						></div>
-					</div>
-				</div>
-			</div> -->
-		</section>
 	</div>
 </template>
 

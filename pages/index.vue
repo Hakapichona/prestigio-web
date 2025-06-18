@@ -462,7 +462,7 @@
 
 		<!-- Hero / Nosotros -->
 		<section
-			id="nosotros"
+			id=""
 			class="ps-flex ps-flex-col-reverse md:ps-flex-row ps-items-center ps-justify-center ps-min-h-screen ps-px-6 ps-pt-24 md:ps-pt-16"
 		>
 			<div class="md:ps-w-1/2 ps-text-center md:ps-text-left">
@@ -482,6 +482,15 @@
 				</button>
 			</div>
 			<div class="md:ps-w-1/2 ps-mb-6 md:ps-mb-0">
+				<div class="ps-bg-white ps-p-4 ps-w-fit ps-h-fit ps-rounded-s-3xl">
+					<img
+						src="../assets/img/24-7.png"
+						alt="Guardias en acción"
+						class="ps-rounded ps-shadow-lg ps-mx-auto"
+						width="100"
+						height="80"
+					/>
+				</div>
 				<img
 					src="../assets/img/logoprestigio.png"
 					alt="Guardias en acción"
@@ -491,7 +500,7 @@
 		</section>
 
 		<!-- Stats / Servicios -->
-		<section id="servicios" class="ps-py-16 ps-bg-gray-900">
+		<section id="" class="ps-py-16 ps-bg-gray-900">
 			<div
 				class="ps-container ps-mx-auto ps-px-4 ps-grid ps-grid-cols-2 md:ps-grid-cols-4 ps-text-center ps-gap-8"
 			>
@@ -509,7 +518,7 @@
 		</section>
 
 		<!-- Sobre Nosotros (Mejorado) -->
-		<section id="sobre-nosotros" class="ps-py-16 ps-bg-gray-800">
+		<section id="nosotros" class="ps-py-16 ps-bg-gray-800">
 			<div class="ps-container ps-max-w-6xl ps-mx-auto ps-px-4">
 				<h2
 					class="ps-text-3xl ps-font-bold ps-text-white ps-text-center ps-mb-12 ps-relative"
@@ -594,7 +603,7 @@
 		</section>
 
 		<!-- Servicios Especializados (Mejorado) -->
-		<section class="ps-py-16 ps-bg-gray-900">
+		<section id="servicios" class="ps-py-16 ps-bg-gray-900">
 			<div class="ps-container ps-max-w-6xl ps-mx-auto ps-px-4">
 				<h2
 					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-text-white ps-relative"
@@ -880,7 +889,7 @@
 		</section>
 
 		<!-- Servicios detalle -->
-		<section class="ps-py-16 ps-bg-gray-900">
+		<section id="" class="ps-py-16 ps-bg-gray-900">
 			<div class="ps-container ps-mx-auto ps-px-4">
 				<h2
 					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
@@ -915,7 +924,7 @@
 		</section>
 
 		<!-- Galería de Fotos (Nueva sección) -->
-		<section id="galeria" class="ps-py-16 ps-bg-black">
+		<section id="pagina" class="ps-py-16 ps-bg-black">
 			<!-- <div class="ps-container ps-mx-auto ps-px-4">
 				<h2
 					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
@@ -1015,104 +1024,6 @@
 		</section>
 
 		<!-- Equipo (Carrusel) -->
-		<section id="equipo" class="ps-py-16 ps-bg-black">
-			<div class="ps-container ps-mx-auto ps-px-4">
-				<h2
-					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
-				>
-					<span class="ps-inline-block ps-relative">
-						Nuestro Equipo
-						<span
-							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
-						></span>
-					</span>
-				</h2>
-
-				<!-- Carrusel -->
-				<div class="ps-relative ps-max-w-4xl ps-mx-auto">
-					<!-- Controles del carrusel -->
-					<button
-						@click="prevSlide"
-						class="ps-absolute ps-left-0 ps-top-1/2 ps-transform ps--translate-y-1/2 ps-z-10 ps-bg-red-600 ps-text-white ps-rounded-full ps-w-10 ps-h-10 ps-flex ps-items-center ps-justify-center ps-shadow-lg ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
-						@mouseenter="stopSlideshow"
-						@mouseleave="startSlideshow"
-					>
-						<i class="mdi mdi-chevron-left ps-text-2xl"></i>
-					</button>
-
-					<button
-						@click="nextSlide"
-						class="ps-absolute ps-right-0 ps-top-1/2 ps-transform ps--translate-y-1/2 ps-z-10 ps-bg-red-600 ps-text-white ps-rounded-full ps-w-10 ps-h-10 ps-flex ps-items-center ps-justify-center ps-shadow-lg ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
-						@mouseenter="stopSlideshow"
-						@mouseleave="startSlideshow"
-					>
-						<i class="mdi mdi-chevron-right ps-text-2xl"></i>
-					</button>
-
-					<!-- Slides -->
-					<div
-						class="ps-overflow-hidden ps-relative ps-rounded-xl ps-shadow-xl"
-					>
-						<div
-							class="ps-flex ps-transition-transform ps-duration-500 ps-ease-in-out"
-							:style="{ transform: `translateX(-${currentSlide * 100}%)` }"
-						>
-							<div
-								v-for="member in team"
-								:key="member.name"
-								class="ps-w-full ps-flex-shrink-0 ps-bg-gray-800 ps-rounded-xl ps-overflow-hidden"
-							>
-								<div class="ps-grid ps-grid-cols-1 md:ps-grid-cols-2">
-									<div class="ps-h-full">
-										<img
-											:src="member.image"
-											:alt="member.name"
-											class="ps-w-full ps-h-full ps-object-cover"
-										/>
-									</div>
-									<div class="ps-p-8 ps-flex ps-flex-col ps-justify-center">
-										<h3 class="ps-text-2xl ps-font-bold ps-mb-2">
-											{{ member.name }}
-										</h3>
-										<p class="ps-text-red-600 ps-text-lg ps-mb-4">
-											{{ member.position }}
-										</p>
-										<p class="ps-text-gray-300 ps-mb-6">{{ member.bio }}</p>
-										<div class="ps-flex ps-space-x-4">
-											<a
-												v-for="social in member.socials"
-												:key="social.icon"
-												:href="social.link"
-												class="ps-text-gray-400 ps-hover:ps-text-red-600 ps-transition-colors ps-duration-300"
-											>
-												<i :class="`${social.icon} ps-text-2xl`"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Indicadores -->
-					<div class="ps-flex ps-justify-center ps-mt-6 ps-space-x-2">
-						<button
-							v-for="(_, index) in team"
-							:key="index"
-							@click="goToSlide(index)"
-							class="ps-w-3 ps-h-3 ps-rounded-full ps-transition-colors ps-duration-300"
-							:class="
-								currentSlide === index
-									? 'ps-bg-red-600'
-									: 'ps-bg-gray-600 ps-hover:ps-bg-gray-500'
-							"
-							@mouseenter="stopSlideshow"
-							@mouseleave="startSlideshow"
-						></button>
-					</div>
-				</div>
-			</div>
-		</section>
 
 		<!-- Blog -->
 		<section id="blog" class="ps-py-16 ps-bg-gray-900">

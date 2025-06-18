@@ -15,9 +15,9 @@
 
 	const routeMap = {
 		Inicio: "/",
-		Nosotros: "/nosotros",
-		Servicios: "/servicios",
-		Páginas: "/paginas",
+		Nosotros: "/#nosotros",
+		Servicios: "/#servicios",
+		Páginas: "/#paginas",
 		Blog: "/blog",
 	};
 
