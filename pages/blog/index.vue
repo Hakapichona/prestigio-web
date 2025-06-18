@@ -1,6 +1,5 @@
-<script setup>
+<script setup lang="ts">
 	import ParticlesBackground from "@/components/ParticlesBackground.vue";
-	import { ref } from "vue";
 	// Blog posts
 	const blogPosts = ref([
 		{

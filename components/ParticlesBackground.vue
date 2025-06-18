@@ -4,12 +4,11 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const canvas = ref(null);
 let ctx = null;
 let animationFrameId = null;
 let particles = [];
-let lines = [];
 
 // Configuración de partículas
 const particleCount = 50;

@@ -1,6 +1,5 @@
-<script setup>
+<script setup lang="ts">
 	import "@mdi/font/css/materialdesignicons.min.css";
-	import { onMounted, reactive, ref } from "vue";
 	import logo from "../assets/img/logoprestigio.png";
 	import ps1 from "../assets/img/ps1.jpeg";
 	import ps2 from "../assets/img/ps2.jpeg";

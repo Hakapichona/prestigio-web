@@ -2,7 +2,7 @@
   <span ref="countElement">{{ displayValue }}</span>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   startVal: {
     type: Number,

@@ -1,6 +1,5 @@
-<script setup>
+<script setup lang="ts">
 	import ParticlesBackground from "@/components/ParticlesBackground.vue";
-	import { computed, onMounted } from "vue";
 	import { useRoute, useRouter } from "vue-router";
 	// Blog posts (en una aplicación real, esto probablemente vendría de una API)
 	const blogPosts = [
