@@ -518,7 +518,7 @@
 		</section>
 
 		<!-- Sobre Nosotros (Mejorado) -->
-		<section id="nosotros" class="ps-py-16 ps-bg-gray-700">
+		<section id="nosotros" class="ps-py-16 ps-bg-gray-800">
 			<div class="ps-container ps-max-w-6xl ps-mx-auto ps-px-4">
 				<h2
 					class="ps-text-3xl ps-font-bold ps-text-white ps-text-center ps-mb-12 ps-relative"
@@ -620,7 +620,7 @@
 					class="ps-grid ps-grid-cols-1 lg:ps-grid-cols-2 ps-gap-12 ps-items-start"
 				>
 					<div
-						class="ps-bg-gray-800 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
+						class="ps-bg-gray-700 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
 					>
 						<div class="ps-flex ps-items-center ps-mb-6">
 							<div class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4">
@@ -662,7 +662,7 @@
 					</div>
 
 					<div
-						class="ps-bg-gray-800 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
+						class="ps-bg-gray-700 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
 					>
 						<div class="ps-flex ps-items-center ps-mb-6">
 							<div class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4">
