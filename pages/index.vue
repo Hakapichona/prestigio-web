@@ -8,6 +8,24 @@
 	import ps5 from "../assets/img/ps5.jpeg";
 	import ps6 from "../assets/img/ps6.jpeg";
 
+	import client1 from "../assets/img/client/1.png";
+	import client10 from "../assets/img/client/10.png";
+	import client11 from "../assets/img/client/11.png";
+	import client12 from "../assets/img/client/12.png";
+	import client13 from "../assets/img/client/13.png";
+	import client14 from "../assets/img/client/14.png";
+	import client15 from "../assets/img/client/15.png";
+	import client16 from "../assets/img/client/16.png";
+	import client17 from "../assets/img/client/17.png";
+	import client2 from "../assets/img/client/2.png";
+	import client3 from "../assets/img/client/3.png";
+	import client4 from "../assets/img/client/4.png";
+	import client5 from "../assets/img/client/5.png";
+	import client6 from "../assets/img/client/6.png";
+	import client7 from "../assets/img/client/7.png";
+	import client8 from "../assets/img/client/8.png";
+	import client9 from "../assets/img/client/9.png";
+
 	// Stats data
 	const stats = [
 		{ value: 250, suffix: "+", label: "Clientes que confían en nosotros" },
@@ -141,7 +159,7 @@
 			date: "20 Abr, 2025",
 			excerpt:
 				"Exploramos cómo los servicios de seguridad privada aportan valor preventivo y operativo.",
-			image: "../assets/img/logoprestigio.png",
+			image: logo,
 		},
 		{
 			title: "Tecnología aplicada a la seguridad",
@@ -149,7 +167,7 @@
 			date: "05 Mar, 2025",
 			excerpt:
 				"Cómo los sistemas inteligentes optimizan la gestión de riesgos físicos.",
-			image: "../assets/img/logoprestigio.png",
+			image: logo,
 		},
 		{
 			title: "Protocolos en eventos masivos",
@@ -157,7 +175,7 @@
 			date: "18 Feb, 2025",
 			excerpt:
 				"Medidas clave para mantener la seguridad y el orden en actividades de gran convocatoria.",
-			image: "https://via.placeholder.com/400x200",
+			image: logo,
 		},
 	];
 
@@ -310,54 +328,23 @@
 	});
 
 	const clients = [
-		{
-			name: "Banco Nacional",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Centro Comercial Plaza",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Hospital Central",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Universidad Metropolitana",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Empresa Constructora ABC",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Hotel Grand Palace",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Corporación Industrial XYZ",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Ministerio de Salud",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Aeropuerto Internacional",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Cadena de Supermercados",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Empresa de Telecomunicaciones",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Centro de Convenciones",
-			logo: "../assets/img/logoprestigio.png",
-		},
+		{ name: "", logo: client1 },
+		{ name: "", logo: client2 },
+		{ name: "", logo: client3 },
+		{ name: "", logo: client4 },
+		{ name: "", logo: client5 },
+		{ name: "", logo: client6 },
+		{ name: "", logo: client7 },
+		{ name: "", logo: client8 },
+		{ name: "", logo: client9 },
+		{ name: "", logo: client10 },
+		{ name: "", logo: client11 },
+		{ name: "", logo: client12 },
+		{ name: "", logo: client13 },
+		{ name: "", logo: client14 },
+		{ name: "", logo: client15 },
+		{ name: "", logo: client16 },
+		{ name: "", logo: client17 },
 	];
 
 	const currentClientSlide = ref(0);
