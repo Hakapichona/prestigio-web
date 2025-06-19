@@ -1236,8 +1236,9 @@
 									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
 										Email
 									</h4>
-									<p class="ps-text-gray-300">info@prestigioseguridad.com</p>
-									<p class="ps-text-gray-300">ventas@prestigioseguridad.com</p>
+									<p class="ps-text-gray-300">
+										contacto@prestigioseguridad.com
+									</p>
 								</div>
 							</div>
 
@@ -1419,7 +1420,7 @@
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-email ps-text-red-600 ps-mr-3 ps-mt-1"></i>
-								<span>info@prestigioseguridad.com</span>
+								<span>contacto@prestigioseguridad.com</span>
 							</li>
 						</ul>
 					</div>
