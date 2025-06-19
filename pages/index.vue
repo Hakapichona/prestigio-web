@@ -462,9 +462,9 @@
 		<!-- Hero / Nosotros -->
 		<section
 			id=""
-			class="ps-flex ps-flex-col-reverse md:ps-flex-row ps-items-center ps-justify-center ps-min-h-screen ps-px-6 ps-pt-24 md:ps-pt-16"
+			class="ps-flex ps-flex-col-reverse md:ps-flex-row ps-items-center ps-justify-center ps-pb-20 ps-px-6"
 		>
-			<div class="md:ps-w-1/2 ps-text-center md:ps-text-left">
+			<div class="md:ps-w-1/2 ps-text-center ps-justify-start md:ps-text-left">
 				<h2 class="ps-text-4xl md:ps-text-5xl ps-font-bold ps-mb-4">
 					PROTEJA SUS INSTALACIONES CON SEGURIDAD CONFIABLE
 				</h2>
@@ -479,17 +479,18 @@
 				>
 					Solicitar Cotización
 				</button>
-			</div>
-			<div class="md:ps-w-1/2 ps-mb-6 md:ps-mb-0">
-				<div class="ps-bg-white ps-p-4 ps-w-fit ps-h-fit ps-rounded-s-3xl">
+				<div
+					class="ps-bg-gray-700 ps-rounded-xl ps-shadow-lg ps-p-4 ps-mt-8 ps-w-fit"
+				>
 					<img
 						src="../assets/img/24-7.png"
-						alt="Guardias en acción"
-						class="ps-rounded ps-shadow-lg ps-mx-auto"
+						alt="Prestigio Seguridad"
+						height="100"
 						width="100"
-						height="80"
 					/>
 				</div>
+			</div>
+			<div class="md:ps-w-1/2 } md:ps-mb-0">
 				<img
 					src="../assets/img/logoprestigio.png"
 					alt="Guardias en acción"
@@ -499,7 +500,7 @@
 		</section>
 
 		<!-- Stats / Servicios -->
-		<section id="" class="ps-py-16 ps-bg-gray-900">
+		<section id="" class="ps-py-16 ps-bg-gray-700">
 			<div
 				class="ps-container ps-mx-auto ps-px-4 ps-grid ps-grid-cols-2 md:ps-grid-cols-4 ps-text-center ps-gap-8"
 			>
@@ -517,7 +518,7 @@
 		</section>
 
 		<!-- Sobre Nosotros (Mejorado) -->
-		<section id="nosotros" class="ps-py-16 ps-bg-gray-800">
+		<section id="nosotros" class="ps-py-16 ps-bg-gray-700">
 			<div class="ps-container ps-max-w-6xl ps-mx-auto ps-px-4">
 				<h2
 					class="ps-text-3xl ps-font-bold ps-text-white ps-text-center ps-mb-12 ps-relative"
