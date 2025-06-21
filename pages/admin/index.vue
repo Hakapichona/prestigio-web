@@ -1,4 +1,6 @@
 <script setup lang="ts">
+	import { useAuthStore } from "../../stores/auth";
+
 	const form = ref();
 	const email = ref("");
 	const password = ref("");
