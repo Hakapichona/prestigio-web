@@ -40,7 +40,7 @@
 			</v-card-title>
 
 			<v-card-text class="ps-px-6 ps-pb-6">
-				<v-form @submit.prevent="handleSubmit">
+				<v-form ref="form" @submit.prevent="handleSubmit">
 					<v-text-field
 						v-model="email"
 						label="Email"
