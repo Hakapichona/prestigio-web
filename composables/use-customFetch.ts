@@ -20,7 +20,7 @@ export function useCustomFetch<T>(
   // @ts-ignore
   return useFetch(request, {
     baseURL: config.public.apiBaseUrl,
-    async onResponse({ response }) {
+    async onResponse({ response }: any) {
       if (!response.ok) {
         if (response.status === 401 && response.url.search("login") === -1) {
           location.reload();
@@ -28,14 +28,13 @@ export function useCustomFetch<T>(
         if (response.status >= 400 && response.status < 500) {
           throw new Error(response._data.message);
         }
-        return new Error(response._data.message);
+        throw new Error(response._data.message);
       }
       return response._data;
     },
-    async onRequestError({ error }) {
+    async onRequestError({ error }: any) {
       if (error.message === "Failed to fetch") {
         navigateTo({ name: "500" });
-        throw new Error(error.message);
       }
     },
     ...opts,
