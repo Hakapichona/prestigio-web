@@ -1,17 +1,7 @@
 {
+  // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "verbatimModuleSyntax": false,
-    "types": ["vite/client"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "include": [
-    "types", 
-    "**/*.ts",
-    "**/*.d.ts",
-    "**/*.vue"
-  ]
+    "verbatimModuleSyntax": false
+  }
 }
