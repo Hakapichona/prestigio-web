@@ -1,32 +1,58 @@
-export const useAuthApi = () => {
-    const config = useRuntimeConfig();
-    const baseURL = config.public.apiUrl;
+import { defineStore } from 'pinia'
+import { useRouter } from 'vue-router'
 
-    const login = async (credentials: { email: string; password: string }) => {
-        return await $fetch<{ accessToken: string }>(`${baseURL}/auth/login`, {
+export const useAuthStore = defineStore('auth', () => {
+    const router = useRouter()
+
+    const token = ref<string>('')
+
+    const retrieveToken = () => {
+        const value = window.localStorage.getItem('token')
+        if (value) {
+            token.value = JSON.parse(value)
+        }
+        return token.value
+    }
+
+    const setToken = (value: string) => {
+        token.value = value
+        window.localStorage.setItem('token', JSON.stringify(value))
+    }
+
+    const login = async (email: string, password: string, noRedirect = false) => {
+        const { data, error }: any = await useCustomFetch('/auth/login', {
             method: 'POST',
-            body: credentials,
-        });
-    };
+            body: { email, password },
+        })
 
-    const register = async (data: any) => {
-        return await $fetch<{ accessToken: string }>(`${baseURL}/auth/register`, {
-            method: 'POST',
-            body: data,
-        });
-    };
+        if (error.value) {
+            throw new Error(error.value.message)
+        }
 
-    const getProfile = async (token: string) => {
-        return await $fetch(`${baseURL}/auth/me`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-    };
+        if (data.value) {
+            setToken(data.value.accessToken)
+        }
 
-    return { login, register, getProfile };
-};
-function useRuntimeConfig() {
-    throw new Error("Function not implemented.");
-}
+        if (!noRedirect) {
+            await router.replace('/')
+        }
 
+        return data.value
+    }
+
+    const logout = async (redirect = true) => {
+        token.value = ''
+        window.localStorage.clear()
+
+        if (redirect) {
+            await router.replace({ name: 'auth-login' })
+        }
+    }
+
+    return {
+        token,
+        retrieveToken,
+        login,
+        logout,
+    }
+})
