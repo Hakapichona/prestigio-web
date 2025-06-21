@@ -4,6 +4,7 @@
 	const password = ref("");
 
 	const authStore = useAuthStore();
+	const router = useRouter();
 
 	const handleSubmit = async () => {
 		const { valid } = await form.value.validate();
@@ -11,6 +12,7 @@
 			try {
 				await authStore.login(email.value, password.value);
 				alert("Inicio de sesión exitoso");
+				router.push("/admin/home");
 			} catch (err: any) {
 				alert(err.toString());
 			}
