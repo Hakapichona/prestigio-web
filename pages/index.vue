@@ -1,7 +1,14 @@
-<script setup>
+<script setup lang="ts">
 	import "@mdi/font/css/materialdesignicons.min.css";
 	import logo from "../assets/img/logoprestigio.png";
+	import ps1 from "../assets/img/ps1.jpeg";
+	import ps2 from "../assets/img/ps2.jpeg";
+	import ps3 from "../assets/img/ps3.jpeg";
+	import ps4 from "../assets/img/ps4.jpeg";
+	import ps5 from "../assets/img/ps5.jpeg";
+	import ps6 from "../assets/img/ps6.jpeg";
 
+	// Stats data
 	const stats = [
 		{ value: 250, suffix: "+", label: "Clientes que confían en nosotros" },
 		{ value: 350, suffix: "+", label: "Servicios personalizados brindados" },
@@ -9,6 +16,7 @@
 		{ value: 150, suffix: "+", label: "Profesionales altamente capacitados" },
 	];
 
+	// Services data
 	const services = [
 		{
 			icon: "mdi mdi-account-hard-hat",
@@ -48,6 +56,7 @@
 		},
 	];
 
+	// FAQs data
 	const faqs = reactive([
 		{
 			question: "¿Qué tipo de servicios brindan?",
@@ -67,31 +76,64 @@
 				"Contamos con protocolos y equipos especializados para cualquier tipo de evento.",
 			isOpen: false,
 		},
+		{
+			question: "¿Cuál es el tiempo de respuesta ante emergencias?",
+			answer:
+				"Nuestro tiempo de respuesta promedio es de 5-10 minutos dependiendo de la ubicación y la gravedad de la situación.",
+			isOpen: false,
+		},
+		{
+			question: "¿Ofrecen servicios personalizados para diferentes industrias?",
+			answer:
+				"Sí, adaptamos nuestros servicios según las necesidades específicas de cada sector: comercial, industrial, residencial, eventos, etc.",
+			isOpen: false,
+		},
 	]);
 
 	const toggleFaq = (i) => (faqs[i].isOpen = !faqs[i].isOpen);
 
+	// Team data with improved structure
 	const team = [
 		{
 			name: "Eduardo Acosta",
 			position: "Director General",
 			image: "../assets/img/logoprestigio.png",
-			socials: [],
+			bio: "Con más de 20 años de experiencia en el sector de seguridad, lidera la visión estratégica de la empresa.",
+			socials: [
+				{ icon: "mdi mdi-linkedin", link: "#" },
+				{ icon: "mdi mdi-twitter", link: "#" },
+			],
 		},
 		{
 			name: "Laura Giménez",
 			position: "Jefa de Operaciones",
 			image: logo,
-			socials: [],
+			bio: "Especialista en logística y coordinación de equipos de seguridad en situaciones de alto riesgo.",
+			socials: [{ icon: "mdi mdi-linkedin", link: "#" }],
 		},
 		{
 			name: "Luis Benítez",
 			position: "Coordinador de Seguridad",
 			image: "../assets/img/logoprestigio.png",
-			socials: [],
+			bio: "Experto en protocolos de seguridad y capacitación de personal de vigilancia.",
+			socials: [
+				{ icon: "mdi mdi-linkedin", link: "#" },
+				{ icon: "mdi mdi-facebook", link: "#" },
+			],
+		},
+		{
+			name: "María Rodríguez",
+			position: "Directora de Tecnología",
+			image: "../assets/img/logoprestigio.png",
+			bio: "Ingeniera especializada en sistemas de vigilancia y monitoreo remoto.",
+			socials: [
+				{ icon: "mdi mdi-linkedin", link: "#" },
+				{ icon: "mdi mdi-github", link: "#" },
+			],
 		},
 	];
 
+	// Blog posts data
 	const blogPosts = [
 		{
 			title: "La importancia de la vigilancia privada",
@@ -119,16 +161,268 @@
 		},
 	];
 
-	const quickLinks = ["Nosotros", "Servicios", "Blog", "Contacto"];
+	// Navigation links
+	const quickLinks = [
+		{ label: "Nosotros", target: "nosotros" },
+		{ label: "Servicios", target: "servicios" },
+		{ label: "VigiControl", target: "vigicontrol" },
+		{ label: "Equipo", target: "equipo" },
+		{ label: "Galería", target: "galeria" },
+		{ label: "Blog", target: "blog" },
+		{ label: "Contacto", target: "contacto" },
+	];
 
+	// Footer social links
 	const footerSocials = [
 		{ icon: "mdi mdi-facebook", link: "#" },
 		{ icon: "mdi mdi-twitter", link: "#" },
 		{ icon: "mdi mdi-linkedin", link: "#" },
+		{ icon: "mdi mdi-instagram", link: "#" },
 	];
 
+	// Contact form data
+	const contactForm = reactive({
+		name: "",
+		email: "",
+		phone: "",
+		service: "",
+		message: "",
+	});
+
+	const serviceOptions = [
+		"Custodia Física",
+		"Patrullaje Preventivo",
+		"Videovigilancia",
+		"Intervención ante Alarmas",
+		"Seguridad Corporativa",
+		"Control Perimetral",
+		"Otro",
+	];
+	const submitForm = () => {
+		formError.value = false;
+		// Validación básica: campos obligatorios
+		if (!contactForm.name || !contactForm.email || !contactForm.message) {
+			formError.value = true;
+			return;
+		}
+		// Enviar correo
+		emailjsSend(
+			"service_presti", // tu Service ID
+			"template_XXXXXX", // tu Template ID
+			{
+				to_email: "destino@dominio.com", // correo receptor
+				from_name: contactForm.name,
+				from_email: contactForm.email,
+				phone: contactForm.phone,
+				service: contactForm.service,
+				message: contactForm.message,
+			}
+		)
+			.then(() => {
+				formSubmitted.value = true;
+				// Limpia formulario
+				Object.keys(contactForm).forEach((k) => (contactForm[k] = ""));
+				// Oculta mensaje tras 5s
+				setTimeout(() => (formSubmitted.value = false), 5000);
+			})
+			.catch((err) => {
+				console.error("EmailJS error:", err);
+				formError.value = true;
+			});
+	};
+
+	// Galería de fotos
+	const galleryImages = [
+		{
+			src: ps1,
+			alt: "Equipo de seguridad en acción",
+			caption: "Nuestro equipo en operaciones especiales",
+		},
+		{
+			src: ps2,
+			alt: "Centro de monitoreo",
+			caption: "Centro de monitoreo 24/7",
+		},
+		{
+			src: ps3,
+			alt: "Patrulla de seguridad",
+			caption: "Unidades móviles de respuesta rápida",
+		},
+		{
+			src: ps4,
+			alt: "Capacitación de personal",
+			caption: "Entrenamiento especializado para nuestro personal",
+		},
+		{
+			src: ps5,
+			alt: "Tecnología de vigilancia",
+			caption: "Sistemas de última generación",
+		},
+		{
+			src: ps6,
+			alt: "Seguridad en eventos",
+			caption: "Cobertura profesional para eventos corporativos",
+		},
+	];
+
+	// Carrusel de equipo
+	const currentSlide = ref(0);
+	const slideInterval = ref(null);
+
+	const nextSlide = () => {
+		currentSlide.value = (currentSlide.value + 1) % team.length;
+	};
+
+	const prevSlide = () => {
+		currentSlide.value = (currentSlide.value - 1 + team.length) % team.length;
+	};
+
+	const goToSlide = (index) => {
+		currentSlide.value = index;
+	};
+
+	const startSlideshow = () => {
+		stopSlideshow();
+		slideInterval.value = setInterval(nextSlide, 5000);
+	};
+
+	const stopSlideshow = () => {
+		if (slideInterval.value) {
+			clearInterval(slideInterval.value);
+		}
+	};
+
+	// Scroll to section function
+	const scrollToSection2 = (id) => {
+		console.log("scrolling to", id);
+		const el = document.getElementById(id);
+		if (el) {
+			el.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	};
+
 	onMounted(() => {
-		// Inicializar efectos adicionales
+		// Ensure smooth scrolling even if CSS fails
+		document.documentElement.style.scrollBehavior = "smooth";
+
+		// Start team carousel
+		startSlideshow();
+	});
+
+	const clients = [
+		{
+			name: "Banco Nacional",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Centro Comercial Plaza",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Hospital Central",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Universidad Metropolitana",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Empresa Constructora ABC",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Hotel Grand Palace",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Corporación Industrial XYZ",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Ministerio de Salud",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Aeropuerto Internacional",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Cadena de Supermercados",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Empresa de Telecomunicaciones",
+			logo: "../assets/img/logoprestigio.png",
+		},
+		{
+			name: "Centro de Convenciones",
+			logo: "../assets/img/logoprestigio.png",
+		},
+	];
+
+	const currentClientSlide = ref(0);
+	const clientSlideInterval = ref(null);
+	const clientsPerView = ref(5); // Por defecto 5 logos por vista
+
+	const nextClientSlide = () => {
+		const maxSlides = Math.ceil(clients.length / clientsPerView.value);
+		currentClientSlide.value = (currentClientSlide.value + 1) % maxSlides;
+	};
+
+	const prevClientSlide = () => {
+		const maxSlides = Math.ceil(clients.length / clientsPerView.value);
+		currentClientSlide.value =
+			(currentClientSlide.value - 1 + maxSlides) % maxSlides;
+	};
+
+	const goToClientSlide = (index) => {
+		currentClientSlide.value = index;
+	};
+
+	const startClientSlideshow = () => {
+		stopClientSlideshow();
+		clientSlideInterval.value = setInterval(nextClientSlide, 4000);
+	};
+
+	const stopClientSlideshow = () => {
+		if (clientSlideInterval.value) {
+			clearInterval(clientSlideInterval.value);
+		}
+	};
+
+	// Función para actualizar clientes por vista según el tamaño de pantalla
+	const updateClientsPerView = () => {
+		if (window.innerWidth >= 1024) {
+			clientsPerView.value = 6; // Desktop: 6 logos
+		} else if (window.innerWidth >= 768) {
+			clientsPerView.value = 4; // Tablet: 4 logos
+		} else {
+			clientsPerView.value = 2; // Mobile: 2 logos
+		}
+	};
+
+	// Scroll to section function
+	const scrollToSection = (id) => {
+		console.log("scrolling to", id);
+		const el = document.getElementById(id);
+		if (el) {
+			el.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	};
+
+	onMounted(() => {
+		// Ensure smooth scrolling even if CSS fails
+		document.documentElement.style.scrollBehavior = "smooth";
+
+		// Start team carousel
+		startSlideshow();
+
+		// Start client carousel
+		startClientSlideshow();
+
+		// Update clients per view on resize
+		updateClientsPerView();
+		window.addEventListener("resize", updateClientsPerView);
 	});
 </script>
 
@@ -137,183 +431,1025 @@
 		<particles-background />
 
 		<!-- Header -->
-		<!-- <custom-header
-			class="ps-fixed ps-top-0 ps-w-full ps-bg-black/80 ps-backdrop-blur ps-flex ps-justify-between ps-items-center ps-p-4 z-50"
+		<custom-header
+			class="ps-fixed ps-top-0 ps-w-full ps-bg-black/80 ps-backdrop-blur ps-flex ps-justify-between ps-items-center ps-p-4 ps-z-50"
 		>
 			<h1 class="ps-text-2xl ps-font-bold">Prestigio Seguridad</h1>
-			<nav>
-				<ul class="ps-flex ps-space-x-6">
-					<li v-for="item in navItems" :key="item">
-						<a href="#" class="ps-hover:ps-text-red-600">{{ item }}</a>
+			<nav class="ps-hidden md:ps-block">
+				<ul class="ps-flex ps-space-x-4 lg:ps-space-x-6">
+					<li v-for="link in quickLinks" :key="link.target">
+						<button
+							@click="scrollToSection(link.target)"
+							class="ps-hover:ps-text-red-600 ps-transition-colors ps-duration-300"
+						>
+							{{ link.label }}
+						</button>
 					</li>
 				</ul>
 			</nav>
-			<button class="ps-bg-red-600 ps-px-4 ps-py-2 ps-rounded ps-text-white">
+			<button
+				class="ps-bg-red-600 ps-px-4 ps-py-2 ps-rounded ps-text-white ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
+			>
 				Contáctanos
 			</button>
-		</custom-header> -->
 
-		<!-- Hero -->
+			<!-- Mobile menu button (could be expanded with dropdown functionality) -->
+			<button class="ps-md:ps-hidden ps-text-white">
+				<i class="mdi mdi-menu ps-text-2xl"></i>
+			</button>
+		</custom-header>
+
+		<!-- Hero / Nosotros -->
 		<section
-			class="ps-flex ps-flex-col-reverse md:ps-flex-row ps-items-center ps-justify-center ps-h-screen ps-px-6 ps-mt-16"
+			id=""
+			class="ps-flex ps-flex-col-reverse md:ps-flex-row ps-items-center ps-justify-center ps-min-h-screen ps-px-6 ps-pt-24 md:ps-pt-16"
 		>
 			<div class="md:ps-w-1/2 ps-text-center md:ps-text-left">
-				<h2 class="ps-text-5xl ps-font-bold ps-mb-4">
-					Proteja sus instalaciones
+				<h2 class="ps-text-4xl md:ps-text-5xl ps-font-bold ps-mb-4">
+					PROTEJA SUS INSTALACIONES CON SEGURIDAD CONFIABLE
 				</h2>
-				<p class="ps-text-gray-400 ps-mb-6">
-					Servicios profesionales de guardias, patrullaje y monitoreo para su
-					empresa.
+				<p class="ps-text-gray-400 ps-mb-6 ps-text-lg">
+					Resguarde su empresa y hogar con nuestros servicios especializados de
+					vigilancia, patrullaje y monitoreo. Un equipo profesional a su
+					servicio, enfocado en brindar seguridad con compromiso y eficiencia,
+					para que usted disfrute de mayor tranquilidad.
 				</p>
 				<button
-					class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700"
+					class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
 				>
 					Solicitar Cotización
 				</button>
 			</div>
 			<div class="md:ps-w-1/2 ps-mb-6 md:ps-mb-0">
+				<div class="ps-bg-white ps-p-4 ps-w-fit ps-h-fit ps-rounded-s-3xl">
+					<img
+						src="../assets/img/24-7.png"
+						alt="Guardias en acción"
+						class="ps-rounded ps-shadow-lg ps-mx-auto"
+						width="100"
+						height="80"
+					/>
+				</div>
 				<img
 					src="../assets/img/logoprestigio.png"
 					alt="Guardias en acción"
-					class="ps-rounded"
+					class="ps-rounded ps-shadow-lg ps-mx-auto"
 				/>
 			</div>
 		</section>
 
-		<!-- Stats -->
-		<section class="ps-py-16 ps-bg-gray-900">
+		<!-- Stats / Servicios -->
+		<section id="" class="ps-py-16 ps-bg-gray-900">
 			<div
-				class="ps-container ps-grid ps-grid-cols-2 md:ps-grid-cols-4 ps-text-center ps-gap-8"
+				class="ps-container ps-mx-auto ps-px-4 ps-grid ps-grid-cols-2 md:ps-grid-cols-4 ps-text-center ps-gap-8"
 			>
-				<div v-for="stat in stats" :key="stat.label">
-					<h3 class="ps-text-4xl ps-font-bold">
+				<div
+					v-for="stat in stats"
+					:key="stat.label"
+					class="ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
+				>
+					<h3 class="ps-text-4xl ps-font-bold ps-text-red-600">
 						<count-up :end-val="stat.value" />{{ stat.suffix }}
 					</h3>
-					<p>{{ stat.label }}</p>
+					<p class="ps-text-lg">{{ stat.label }}</p>
 				</div>
 			</div>
 		</section>
 
-		<!-- Servicios -->
-		<section class="ps-py-16">
-			<h2 class="ps-text-3xl ps-font-bold ps-text-center ps-mb-8">
-				Nuestros Servicios
-			</h2>
-			<div
-				class="ps-container ps-grid ps-grid-cols-1 md:ps-grid-cols-3 ps-gap-6"
-			>
-				<div
-					v-for="svc in services"
-					:key="svc.title"
-					class="ps-bg-gray-800 ps-rounded-lg ps-p-6 ps-text-center"
+		<!-- Sobre Nosotros (Mejorado) -->
+		<section id="nosotros" class="ps-py-16 ps-bg-gray-800">
+			<div class="ps-container ps-max-w-6xl ps-mx-auto ps-px-4">
+				<h2
+					class="ps-text-3xl ps-font-bold ps-text-white ps-text-center ps-mb-12 ps-relative"
 				>
-					<i :class="svc.icon + ' ps-text-4xl ps-mb-4'"></i>
-					<h3 class="ps-text-xl ps-font-semibold ps-mb-2">{{ svc.title }}</h3>
-					<p class="ps-text-gray-400">{{ svc.description }}</p>
-				</div>
-			</div>
-		</section>
+					<span class="ps-inline-block ps-relative">
+						Sobre Nosotros
+						<span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
 
-		<!-- FAQs -->
-		<section class="ps-bg-black ps-py-16">
-			<h2 class="ps-text-3xl ps-font-bold ps-text-center ps-mb-8">
-				Preguntas Frecuentes
-			</h2>
-			<div class="ps-container ps-max-w-xl ps-mx-auto">
-				<div v-for="(faq, i) in faqs" :key="faq.question" class="ps-mb-4">
-					<button
-						@click="toggleFaq(i)"
-						class="ps-w-full ps-text-left ps-flex ps-justify-between ps-py-2 ps-border-b ps-border-gray-700"
-					>
-						<span>{{ faq.question }}</span>
-						<i
-							:class="
-								faq.isOpen ? 'mdi mdi-chevron-up' : 'mdi mdi-chevron-down'
-							"
-						></i>
-					</button>
-					<p v-if="faq.isOpen" class="ps-text-gray-400 ps-pl-4 ps-pt-2">
-						{{ faq.answer }}
-					</p>
-				</div>
-			</div>
-		</section>
-
-		<!-- Equipo -->
-		<section class="ps-py-16 ps-bg-gray-900">
-			<h2 class="ps-text-3xl ps-font-bold ps-text-center ps-mb-8">
-				Nuestro Equipo
-			</h2>
-			<div
-				class="ps-container ps-grid ps-grid-cols-1 md:ps-grid-cols-3 ps-gap-6"
-			>
 				<div
-					v-for="member in team"
-					:key="member.name"
-					class="ps-bg-gray-800 ps-rounded-lg ps-overflow-hidden"
+					class="ps-grid ps-grid-cols-1 md:ps-grid-cols-2 ps-gap-12 ps-items-center"
 				>
-					<img
-						:src="member.image"
-						alt="member.name"
-						class="ps-w-full ps-h-64 ps-object-cover"
-					/>
-					<div class="ps-p-6 ps-text-center">
-						<h3 class="ps-text-xl ps-font-bold ps-mb-1">{{ member.name }}</h3>
-						<p class="ps-text-gray-400 ps-mb-4">{{ member.position }}</p>
+					<div>
+						<img
+							src="../assets/img/logoprestigio.png"
+							alt="Prestigio Seguridad"
+							class="ps-rounded-lg ps-shadow-xl ps-w-full"
+						/>
+					</div>
+
+					<div>
+						<h3 class="ps-text-2xl ps-font-bold ps-text-white ps-mb-4">
+							Nuestra Historia
+						</h3>
+						<p class="ps-text-gray-300 ps-text-lg ps-leading-relaxed ps-mb-6">
+							<span class="ps-text-red-600 ps-font-bold">PRESTIGIO S.R.L.</span>
+							llevamos más de
+							<span class="ps-text-white ps-font-bold"
+								>30 años consolidándonos </span
+							>, como una empresa referente en el sector de seguridad. Desde
+							nuestra fundación, nos hemos comprometido a ofrecer un servicio
+							diferencial, adaptado a las necesidades específicas de cada
+							cliente, con un enfoque personalizado y de calidad.
+						</p>
+
+						<p class="ps-text-gray-300 ps-text-lg ps-leading-relaxed ps-mb-6">
+							Nuestra misión es enfrentar los desafíos del sector con visión
+							estratégica e innovación constante. Nos mantenemos a la vanguardia
+							en tecnología y en la capacitación continua de nuestro equipo,
+							garantizando soluciones de seguridad eficientes y confiables.
+						</p>
+
+						<div
+							class="ps-grid ps-grid-cols-1 sm:ps-grid-cols-2 ps-gap-6 ps-mt-8"
+						>
+							<div class="ps-flex ps-items-start">
+								<i
+									class="mdi mdi-shield-check ps-text-red-600 ps-text-3xl ps-mr-3"
+								></i>
+								<div>
+									<h4 class="ps-text-xl ps-font-semibold ps-text-white ps-mb-2">
+										Calidad y Compromiso
+									</h4>
+									<p class="ps-text-gray-300">
+										Capacitación constante, trabajo en equipo e implementación
+										de tecnología de vanguardia.
+									</p>
+								</div>
+							</div>
+
+							<div class="ps-flex ps-items-start">
+								<i
+									class="mdi mdi-certificate ps-text-red-600 ps-text-3xl ps-mr-3"
+								></i>
+								<div>
+									<h4 class="ps-text-xl ps-font-semibold ps-text-white ps-mb-2">
+										Confianza y Excelencia
+									</h4>
+									<p class="ps-text-gray-300">
+										Nuestra razón de ser radica en satisfacer plenamente las
+										necesidades de nuestros clientes.
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Blog -->
-		<section class="ps-py-16 ps-bg-black">
-			<h2 class="ps-text-3xl ps-font-bold ps-text-center ps-mb-8">
-				Noticias y Blog
-			</h2>
-			<div
-				class="ps-container ps-grid ps-grid-cols-1 md:ps-grid-cols-3 ps-gap-6"
-			>
-				<div
-					v-for="post in blogPosts"
-					:key="post.title"
-					class="ps-bg-gray-800 ps-rounded-lg ps-overflow-hidden"
+		<!-- Servicios Especializados (Mejorado) -->
+		<section id="servicios" class="ps-py-16 ps-bg-gray-900">
+			<div class="ps-container ps-max-w-6xl ps-mx-auto ps-px-4">
+				<h2
+					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-text-white ps-relative"
 				>
-					<img
-						:src="post.image"
-						alt="post.title"
-						class="ps-w-full ps-h-48 ps-object-cover"
-					/>
-					<div class="ps-p-6">
+					<span class="ps-inline-block ps-relative">
+						Servicios Especializados
 						<span
-							class="ps-bg-red-600 ps-text-white ps-text-xs ps-px-2 ps-py-1 ps-rounded"
-							>{{ post.category }}</span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
+
+				<div
+					class="ps-grid ps-grid-cols-1 lg:ps-grid-cols-2 ps-gap-12 ps-items-start"
+				>
+					<div
+						class="ps-bg-gray-800 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
+					>
+						<div class="ps-flex ps-items-center ps-mb-6">
+							<div class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4">
+								<i class="mdi mdi-shield-account ps-text-white ps-text-3xl"></i>
+							</div>
+							<h3 class="ps-text-2xl ps-font-bold ps-mb-0 ps-text-white">
+								Seguridad Privada
+							</h3>
+						</div>
+
+						<ul
+							class="ps-list-disc ps-pl-6 ps-space-y-3 ps-text-gray-300 ps-text-lg"
 						>
-						<span class="ps-text-gray-400 ps-text-sm ps-ml-2">{{
-							post.date
-						}}</span>
-						<h3 class="ps-text-xl ps-font-bold ps-mb-2 ps-mt-2">
-							{{ post.title }}
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Resguardo para dignatarios y ejecutivos</span>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Análisis de riesgos en seguridad</span>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Proyectos de seguridad integral</span>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Seguridad bancaria especializada</span>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Seguridad domiciliaria e industrial</span>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Protección de instalaciones críticas</span>
+							</li>
+						</ul>
+					</div>
+
+					<div
+						class="ps-bg-gray-800 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
+					>
+						<div class="ps-flex ps-items-center ps-mb-6">
+							<div class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4">
+								<i class="mdi mdi-cctv ps-text-white ps-text-3xl"></i>
+							</div>
+							<h3 class="ps-text-2xl ps-font-bold ps-mb-0 ps-text-white">
+								Monitoreo y Control Remoto
+							</h3>
+						</div>
+
+						<ul
+							class="ps-list-disc ps-pl-6 ps-space-y-3 ps-text-gray-300 ps-text-lg"
+						>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span
+									>Diseño e implementación de tecnologías en seguridad
+									electrónica</span
+								>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span
+									>Sistemas de control de acceso y prevención de incendios</span
+								>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span
+									>Supervisión electrónica de rondas con informes
+									detallados</span
+								>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Alarmas con respuesta de patrulla armada</span>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Monitoreo remoto de CCTV con almacenamiento digital</span>
+							</li>
+							<li class="ps-flex ps-items-center">
+								<i class="mdi mdi-check-circle ps-text-red-600 ps-mr-2"></i>
+								<span>Análisis de video con inteligencia artificial</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- VigiControl (Mejorado) -->
+		<section id="vigicontrol" class="ps-py-16 ps-bg-black">
+			<div class="ps-container ps-max-w-6xl ps-mx-auto ps-px-4">
+				<h2
+					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-text-white ps-relative"
+				>
+					<span class="ps-inline-block ps-relative">
+						VigiControl
+						<span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
+
+				<div class="ps-grid ps-grid-cols-1 lg:ps-grid-cols-3 ps-gap-8">
+					<div class="lg:ps-col-span-1 ps-order-2 lg:ps-order-1">
+						<div
+							class="ps-bg-gray-800 ps-rounded-lg ps-overflow-hidden ps-shadow-lg"
+						>
+							<div class="ps-bg-red-600 ps-p-4 ps-text-center">
+								<h3 class="ps-text-2xl ps-font-bold ps-text-white">
+									Características Principales
+								</h3>
+							</div>
+							<div class="ps-p-6">
+								<ul class="ps-space-y-4">
+									<li class="ps-flex ps-items-start">
+										<i
+											class="mdi mdi-check-circle ps-text-red-600 ps-text-xl ps-mt-1 ps-mr-3"
+										></i>
+										<span class="ps-text-gray-300"
+											>Monitoreo en tiempo real 24/7</span
+										>
+									</li>
+									<li class="ps-flex ps-items-start">
+										<i
+											class="mdi mdi-check-circle ps-text-red-600 ps-text-xl ps-mt-1 ps-mr-3"
+										></i>
+										<span class="ps-text-gray-300"
+											>Geolocalización precisa</span
+										>
+									</li>
+									<li class="ps-flex ps-items-start">
+										<i
+											class="mdi mdi-check-circle ps-text-red-600 ps-text-xl ps-mt-1 ps-mr-3"
+										></i>
+										<span class="ps-text-gray-300">Alertas instantáneas</span>
+									</li>
+									<li class="ps-flex ps-items-start">
+										<i
+											class="mdi mdi-check-circle ps-text-red-600 ps-text-xl ps-mt-1 ps-mr-3"
+										></i>
+										<span class="ps-text-gray-300">Reportes automáticos</span>
+									</li>
+									<li class="ps-flex ps-items-start">
+										<i
+											class="mdi mdi-check-circle ps-text-red-600 ps-text-xl ps-mt-1 ps-mr-3"
+										></i>
+										<span class="ps-text-gray-300"
+											>Funciona sin conexión a internet</span
+										>
+									</li>
+									<li class="ps-flex ps-items-start">
+										<i
+											class="mdi mdi-check-circle ps-text-red-600 ps-text-xl ps-mt-1 ps-mr-3"
+										></i>
+										<span class="ps-text-gray-300">Interfaz intuitiva</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="lg:ps-col-span-2 ps-order-1 lg:ps-order-2">
+						<div class="ps-bg-gray-800 ps-rounded-lg ps-p-8 ps-shadow-lg">
+							<p class="ps-text-gray-300 ps-text-lg ps-leading-relaxed ps-mb-6">
+								<span class="ps-text-red-600 ps-font-bold">VigiControl</span> es
+								nuestro sistema de control de rondas en línea para vigiladores y
+								personal de guardia, disponible
+								<span class="ps-text-white ps-font-bold"
+									>24/7 los 365 días del año</span
+								>. Permite monitorizar la posición, enviar alertas y reportes en
+								tiempo real desde un smartphone con conexión TCP-IP o SMS cuando
+								no hay datos móviles.
+							</p>
+
+							<div
+								class="ps-grid ps-grid-cols-1 md:ps-grid-cols-2 ps-gap-8 ps-mt-8"
+							>
+								<div
+									class="ps-bg-gray-900 ps-rounded-lg ps-p-6 ps-shadow-inner"
+								>
+									<h3
+										class="ps-text-xl ps-font-semibold ps-mb-4 ps-text-white ps-flex ps-items-center"
+									>
+										<i
+											class="mdi mdi-cellphone ps-text-red-600 ps-text-2xl ps-mr-2"
+										></i>
+										Funciones Mobile
+									</h3>
+									<ul class="ps-space-y-4 ps-text-gray-300">
+										<li>
+											<strong class="ps-text-white">Hombre Vivo:</strong>
+											Control de presencia vía GPS y alertas si no se presiona
+											dentro de un tiempo establecido.
+										</li>
+										<li>
+											<strong class="ps-text-white">SOS:</strong> Alerta de
+											pánico con ubicación, imagen, video o nota de voz.
+										</li>
+										<li>
+											<strong class="ps-text-white">Ronda:</strong> Registro de
+											arribo/partida en puntos de control con fecha, hora y
+											posición.
+										</li>
+										<li>
+											<strong class="ps-text-white">Novedades:</strong> Envío de
+											notas, imágenes, códigos QR o llamadas al centro de
+											monitoreo.
+										</li>
+									</ul>
+								</div>
+
+								<div
+									class="ps-bg-gray-900 ps-rounded-lg ps-p-6 ps-shadow-inner"
+								>
+									<h3
+										class="ps-text-xl ps-font-semibold ps-mb-4 ps-text-white ps-flex ps-items-center"
+									>
+										<i
+											class="mdi mdi-monitor-dashboard ps-text-red-600 ps-text-2xl ps-mr-2"
+										></i>
+										Módulo Web
+									</h3>
+									<p class="ps-text-gray-300 ps-mb-4">
+										Plataforma web para el gerenciamiento de dispositivos y
+										procesamiento de señales, ideal para supervisar a todos los
+										vigiladores desde el centro de monitoreo.
+									</p>
+
+									<ul class="ps-space-y-2 ps-text-gray-300">
+										<li class="ps-flex ps-items-center">
+											<i class="mdi mdi-check ps-text-red-600 ps-mr-2"></i>
+											<span>Panel de control personalizable</span>
+										</li>
+										<li class="ps-flex ps-items-center">
+											<i class="mdi mdi-check ps-text-red-600 ps-mr-2"></i>
+											<span>Reportes en tiempo real</span>
+										</li>
+										<li class="ps-flex ps-items-center">
+											<i class="mdi mdi-check ps-text-red-600 ps-mr-2"></i>
+											<span>Historial de eventos</span>
+										</li>
+										<li class="ps-flex ps-items-center">
+											<i class="mdi mdi-check ps-text-red-600 ps-mr-2"></i>
+											<span>Exportación de datos</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="ps-mt-8 ps-text-center">
+								<button
+									class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
+								>
+									Solicitar Demostración
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Servicios detalle -->
+		<section id="" class="ps-py-16 ps-bg-gray-900">
+			<div class="ps-container ps-mx-auto ps-px-4">
+				<h2
+					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
+				>
+					<span class="ps-inline-block ps-relative">
+						Nuestros Servicios
+						<span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
+				<div
+					class="ps-container ps-grid ps-grid-cols-1 sm:ps-grid-cols-2 lg:ps-grid-cols-3 ps-gap-6"
+				>
+					<div
+						v-for="svc in services"
+						:key="svc.title"
+						class="ps-bg-gray-800 ps-rounded-lg ps-p-6 ps-text-center ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
+					>
+						<div
+							class="ps-bg-red-600 ps-w-16 ps-h-16 ps-rounded-full ps-flex ps-items-center ps-justify-center ps-mx-auto ps-mb-4"
+						>
+							<i :class="svc.icon + ' ps-text-3xl ps-text-white'"></i>
+						</div>
+						<h3 class="ps-text-xl ps-font-semibold ps-mb-3 ps-text-white">
+							{{ svc.title }}
 						</h3>
-						<p class="ps-text-gray-400">{{ post.excerpt }}</p>
+						<p class="ps-text-gray-400">{{ svc.description }}</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Galería de Fotos (Nueva sección) -->
+		<section id="pagina" class="ps-py-16 ps-bg-black">
+			<!-- <div class="ps-container ps-mx-auto ps-px-4">
+				<h2
+					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
+				>
+					<span class="ps-inline-block ps-relative">
+						Galería de Fotos
+						<span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
+
+				<div
+					class="ps-grid ps-grid-cols-1 sm:ps-grid-cols-2 lg:ps-grid-cols-3 ps-gap-6"
+				>
+					<div
+						v-for="(image, index) in galleryImages"
+						:key="index"
+						class="ps-group ps-relative ps-overflow-hidden ps-rounded-lg ps-shadow-lg"
+					>
+						<img
+							:src="image.src"
+							:alt="image.alt"
+							class="ps-w-full ps-h-64 ps-object-contain ps-transition-transform ps-duration-500 ps-group-hover:ps-scale-110"
+						/>
+						<div
+							class="ps-absolute ps-inset-0 ps-bg-black ps-bg-opacity-50 ps-opacity-0 ps-group-hover:ps-opacity-100 ps-transition-opacity ps-duration-300 ps-flex ps-items-center ps-justify-center"
+						>
+							<div class="ps-text-center ps-p-4">
+								<h3 class="ps-text-white ps-text-xl ps-font-bold ps-mb-2">
+									{{ image.caption }}
+								</h3>
+								<button
+									class="ps-bg-red-600 ps-text-white ps-px-4 ps-py-2 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
+								>
+									Ver más
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+			<v-carousel>
+				<v-carousel-item
+					v-for="(image, index) in galleryImages"
+					:key="index"
+					class="ps-group ps-relative ps-overflow-hidden ps-rounded-lg ps-shadow-lg ps-object-contain"
+					show-arrows="hover"
+					:src="image"
+				></v-carousel-item>
+			</v-carousel>
+		</section>
+
+		<!-- FAQs -->
+		<section class="ps-bg-gray-900 ps-py-16">
+			<div class="ps-container ps-mx-auto ps-px-4">
+				<h2
+					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
+				>
+					<span class="ps-inline-block ps-relative">
+						Preguntas Frecuentes
+						<span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
+				<div class="ps-container ps-max-w-3xl ps-mx-auto">
+					<div v-for="(faq, i) in faqs" :key="faq.question" class="ps-mb-4">
+						<button
+							@click="toggleFaq(i)"
+							class="ps-w-full ps-text-left ps-flex ps-justify-between ps-items-center ps-py-4 ps-px-6 ps-border-b ps-border-gray-700 ps-bg-gray-800 ps-rounded-t-lg ps-transition-colors ps-duration-300"
+							:class="{
+								'ps-rounded-b-lg': !faq.isOpen,
+								'ps-bg-gray-700': faq.isOpen,
+							}"
+						>
+							<span class="ps-font-semibold ps-text-lg">{{
+								faq.question
+							}}</span>
+							<i
+								:class="
+									faq.isOpen ? 'mdi mdi-chevron-up' : 'mdi mdi-chevron-down'
+								"
+								class="ps-text-red-600"
+							></i>
+						</button>
+						<div
+							v-if="faq.isOpen"
+							class="ps-bg-gray-800 ps-rounded-b-lg ps-p-6 ps-text-gray-300 ps-border-l-2 ps-border-red-600"
+						>
+							{{ faq.answer }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Equipo (Carrusel) -->
+
+		<!-- Blog -->
+		<section id="blog" class="ps-py-16 ps-bg-gray-900">
+			<div class="ps-container ps-mx-auto ps-px-4">
+				<h2
+					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
+				>
+					<span class="ps-inline-block ps-relative">
+						Noticias y Blog
+						<span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
+				<div
+					class="ps-container ps-grid ps-grid-cols-1 md:ps-grid-cols-3 ps-gap-8"
+				>
+					<div
+						v-for="post in blogPosts"
+						:key="post.title"
+						class="ps-bg-gray-800 ps-rounded-lg ps-overflow-hidden ps-shadow-lg ps-transform ps-hover:ps-translate-y-[-5px] ps-transition-transform ps-duration-300"
+					>
+						<img
+							:src="post.image"
+							:alt="post.title"
+							class="ps-w-full ps-h-48 ps-object-cover"
+						/>
+						<div class="ps-p-6">
+							<div class="ps-flex ps-items-center ps-mb-3">
+								<span
+									class="ps-bg-red-600 ps-text-white ps-text-xs ps-px-3 ps-py-1 ps-rounded-full"
+									>{{ post.category }}</span
+								>
+								<span class="ps-text-gray-400 ps-text-sm ps-ml-3">{{
+									post.date
+								}}</span>
+							</div>
+							<h3 class="ps-text-xl ps-font-bold ps-mb-3 ps-text-white">
+								{{ post.title }}
+							</h3>
+							<p class="ps-text-gray-400 ps-mb-4">{{ post.excerpt }}</p>
+							<a
+								href="#"
+								class="ps-text-red-600 ps-font-semibold ps-hover:ps-text-red-500 ps-transition-colors ps-duration-300 ps-flex ps-items-center"
+							>
+								Leer más
+								<i class="mdi mdi-arrow-right ps-ml-1"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="clientes" class="ps-py-16 ps-bg-gray-800">
+			<div class="ps-container ps-mx-auto ps-px-4">
+				<h2 class="ps-text-3xl ps-font-bold ps-text-center ps-mb-4 ps-relative">
+					<span class="ps-inline-block ps-relative">
+						Ellos confían en nosotros
+						<span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
+				<p
+					class="ps-text-center ps-text-gray-400 ps-mb-12 ps-max-w-2xl ps-mx-auto"
+				>
+					Más de 250 empresas e instituciones han confiado en nuestros servicios
+					de seguridad profesional
+				</p>
+
+				<!-- Carrusel de clientes -->
+				<div class="ps-relative ps-max-w-6xl ps-mx-auto">
+					<!-- Controles del carrusel -->
+					<button
+						@click="prevClientSlide"
+						class="ps-absolute ps-left-0 ps-top-1/2 ps-transform ps--translate-y-1/2 ps-z-10 ps-bg-red-600 ps-text-white ps-rounded-full ps-w-10 ps-h-10 ps-flex ps-items-center ps-justify-center ps-shadow-lg ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300 ps--ml-5"
+						@mouseenter="stopClientSlideshow"
+						@mouseleave="startClientSlideshow"
+					>
+						<i class="mdi mdi-chevron-left ps-text-xl"></i>
+					</button>
+
+					<button
+						@click="nextClientSlide"
+						class="ps-absolute ps-right-0 ps-top-1/2 ps-transform ps--translate-y-1/2 ps-z-10 ps-bg-red-600 ps-text-white ps-rounded-full ps-w-10 ps-h-10 ps-flex ps-items-center ps-justify-center ps-shadow-lg ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300 ps--mr-5"
+						@mouseenter="stopClientSlideshow"
+						@mouseleave="startClientSlideshow"
+					>
+						<i class="mdi mdi-chevron-right ps-text-xl"></i>
+					</button>
+
+					<!-- Contenedor del carrusel -->
+					<div
+						class="ps-overflow-hidden ps-bg-gray-900 ps-rounded-lg ps-shadow-lg ps-py-8"
+					>
+						<div
+							class="ps-flex ps-transition-transform ps-duration-500 ps-ease-in-out"
+							:style="{
+								transform: `translateX(-${currentClientSlide * 100}%)`,
+							}"
+						>
+							<!-- Slides de clientes -->
+							<div
+								v-for="slideIndex in Math.ceil(clients.length / clientsPerView)"
+								:key="slideIndex"
+								class="ps-w-full ps-flex-shrink-0 ps-flex ps-items-center ps-justify-center ps-space-x-8 ps-px-8"
+							>
+								<div
+									v-for="client in clients.slice(
+										(slideIndex - 1) * clientsPerView,
+										slideIndex * clientsPerView
+									)"
+									:key="client.name"
+									class="ps-flex-1 ps-flex ps-items-center ps-justify-center ps-h-20 ps-grayscale ps-hover:ps-grayscale-0 ps-transition-all ps-duration-300 ps-transform ps-hover:ps-scale-110"
+								>
+									<img
+										:src="client.logo"
+										:alt="client.name"
+										class="ps-max-h-16 ps-max-w-full ps-object-contain ps-filter ps-opacity-70 ps-hover:ps-opacity-100 ps-transition-opacity ps-duration-300"
+										:title="client.name"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Indicadores -->
+					<div class="ps-flex ps-justify-center ps-mt-6 ps-space-x-2">
+						<button
+							v-for="(_, index) in Math.ceil(clients.length / clientsPerView)"
+							:key="index"
+							@click="goToClientSlide(index)"
+							class="ps-w-3 ps-h-3 ps-rounded-full ps-transition-colors ps-duration-300"
+							:class="
+								currentClientSlide === index
+									? 'ps-bg-red-600'
+									: 'ps-bg-gray-600 ps-hover:ps-bg-gray-500'
+							"
+							@mouseenter="stopClientSlideshow"
+							@mouseleave="startClientSlideshow"
+						></button>
+					</div>
+				</div>
+
+				<!-- Estadística adicional -->
+				<div class="ps-text-center ps-mt-12">
+					<div
+						class="ps-inline-flex ps-items-center ps-bg-gray-900 ps-rounded-full ps-px-6 ps-py-3"
+					>
+						<i
+							class="mdi mdi-shield-check ps-text-red-600 ps-text-2xl ps-mr-3"
+						></i>
+						<span class="ps-text-white ps-font-semibold">
+							Más de
+							<span class="ps-text-red-600 ps-font-bold">28 años</span>
+							protegiendo lo que más valoras
+						</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contacto (Nueva sección) -->
+		<section id="contacto" class="ps-py-16 ps-bg-black">
+			<div class="ps-container ps-mx-auto ps-px-4">
+				<h2
+					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
+				>
+					<span class="ps-inline-block ps-relative">
+						Contáctenos
+						<span
+							class="ps-absolute ps-bottom-0 ps-left-0 ps-w-full ps-h-1 ps-bg-red-600"
+						></span>
+					</span>
+				</h2>
+
+				<div class="ps-grid ps-grid-cols-1 lg:ps-grid-cols-2 ps-gap-12">
+					<!-- Información de contacto -->
+					<div class="ps-bg-gray-800 ps-rounded-lg ps-p-8 ps-shadow-lg">
+						<h3 class="ps-text-2xl ps-font-bold ps-mb-6 ps-text-white">
+							Información de Contacto
+						</h3>
+
+						<div class="ps-space-y-6">
+							<div class="ps-flex ps-items-start">
+								<div
+									class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4 ps-shrink-0"
+								>
+									<i class="mdi mdi-map-marker ps-text-white ps-text-2xl"></i>
+								</div>
+								<div>
+									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
+										Dirección
+									</h4>
+									<p class="ps-text-gray-300">
+										Mayor Ruffinelli e/ Palo Santo Loma Pyta – Asunción
+									</p>
+								</div>
+							</div>
+
+							<div class="ps-flex ps-items-start">
+								<div
+									class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4 ps-shrink-0"
+								>
+									<i class="mdi mdi-phone ps-text-white ps-text-2xl"></i>
+								</div>
+								<div>
+									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
+										Teléfono
+									</h4>
+									<p class="ps-text-gray-300">0994 561 777</p>
+								</div>
+							</div>
+
+							<div class="ps-flex ps-items-start">
+								<div
+									class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4 ps-shrink-0"
+								>
+									<i class="mdi mdi-email ps-text-white ps-text-2xl"></i>
+								</div>
+								<div>
+									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
+										Email
+									</h4>
+									<p class="ps-text-gray-300">info@prestigioseguridad.com</p>
+									<p class="ps-text-gray-300">ventas@prestigioseguridad.com</p>
+								</div>
+							</div>
+
+							<div class="ps-flex ps-items-start">
+								<div
+									class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4 ps-shrink-0"
+								>
+									<i class="mdi mdi-clock ps-text-white ps-text-2xl"></i>
+								</div>
+								<div>
+									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
+										Horario de Atención
+									</h4>
+									<p class="ps-text-gray-300">
+										Lunes a Viernes: 8:00 hs - 19:00 hs
+									</p>
+									<p class="ps-text-gray-300">Sábados: 9:00 hs - 13:00 hs</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="ps-mt-8">
+							<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-4">
+								Síguenos en redes sociales
+							</h4>
+							<div class="ps-flex ps-space-x-4">
+								<a
+									v-for="social in footerSocials"
+									:key="social.icon"
+									:href="social.link"
+									class="ps-bg-gray-700 ps-text-white ps-hover:ps-bg-red-600 ps-transition-colors ps-duration-300 ps-w-10 ps-h-10 ps-rounded-full ps-flex ps-items-center ps-justify-center"
+								>
+									<i :class="`${social.icon} ps-text-xl`"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Formulario de contacto -->
+					<div class="ps-bg-gray-800 ps-rounded-lg ps-p-8 ps-shadow-lg">
+						<h3 class="ps-text-2xl ps-font-bold ps-mb-6 ps-text-white">
+							Envíenos un mensaje
+						</h3>
+
+						<form
+							@submit.prevent="submitForm"
+							class="ps-flex ps-flex-col ps-space-y-4"
+						>
+							<!-- Campos -->
+							<input
+								type="text"
+								v-model="contactForm.name"
+								placeholder="Nombre completo *"
+								required
+							/>
+							<input
+								type="email"
+								v-model="contactForm.email"
+								placeholder="Email *"
+								required
+							/>
+							<input
+								type="tel"
+								v-model="contactForm.phone"
+								placeholder="Teléfono"
+							/>
+							<select v-model="contactForm.service">
+								<option value="">Servicio de interés</option>
+								<option v-for="opt in serviceOptions" :key="opt" :value="opt">
+									{{ opt }}
+								</option>
+							</select>
+							<textarea
+								v-model="contactForm.message"
+								placeholder="Mensaje *"
+								required
+								rows="4"
+							></textarea>
+
+							<!-- Mensajes de estado -->
+							<div
+								v-if="formError"
+								class="ps-bg-red-900/50 ps-border ps-border-red-600 ps-text-white ps-p-4 ps-rounded"
+							>
+								Por favor complete todos los campos requeridos.
+							</div>
+
+							<div
+								v-if="formSubmitted"
+								class="ps-bg-green-900/50 ps-border ps-border-green-600 ps-text-white ps-p-4 ps-rounded"
+							>
+								¡Gracias por su mensaje! Nos pondremos en contacto a la
+								brevedad.
+							</div>
+
+							<!-- Botón -->
+							<button type="submit" class="ps-bg-red-600 …">
+								Enviar Mensaje
+							</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- Footer -->
-		<footer class="ps-bg-gray-900 ps-text-gray-400 ps-py-8 ps-text-center">
-			<div class="ps-space-x-4 ps-mb-4">
-				<a v-for="s in footerSocials" :key="s.icon" :href="s.link"
-					><i :class="s.icon"></i
-				></a>
+		<footer class="ps-bg-gray-900 ps-text-gray-400 ps-py-12">
+			<div class="ps-container ps-mx-auto ps-px-4">
+				<div
+					class="ps-grid ps-grid-cols-1 md:ps-grid-cols-2 lg:ps-grid-cols-4 ps-gap-8 ps-mb-8"
+				>
+					<div>
+						<h3 class="ps-text-xl ps-font-bold ps-text-white ps-mb-4">
+							Prestigio Seguridad
+						</h3>
+						<p class="ps-mb-4">
+							Brindando servicios profesionales de seguridad con excelencia y
+							compromiso desde 1995.
+						</p>
+						<div class="ps-flex ps-space-x-4">
+							<a
+								v-for="social in footerSocials"
+								:key="social.icon"
+								:href="social.link"
+								class="ps-text-gray-400 ps-hover:ps-text-red-600 ps-transition-colors ps-duration-300"
+							>
+								<i :class="`${social.icon} ps-text-xl`"></i>
+							</a>
+						</div>
+					</div>
+
+					<div>
+						<h3 class="ps-text-xl ps-font-bold ps-text-white ps-mb-4">
+							Enlaces Rápidos
+						</h3>
+						<ul class="ps-space-y-2">
+							<li v-for="link in quickLinks" :key="link.target">
+								<a
+									href="#"
+									@click.prevent="scrollToSection(link.target)"
+									class="ps-text-gray-400 ps-hover:ps-text-red-600 ps-transition-colors ps-duration-300"
+								>
+									{{ link.label }}
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div>
+						<h3 class="ps-text-xl ps-font-bold ps-text-white ps-mb-4">
+							Servicios
+						</h3>
+						<ul class="ps-space-y-2">
+							<li v-for="(svc, index) in services.slice(0, 5)" :key="index">
+								<a
+									href="#"
+									class="ps-text-gray-400 ps-hover:ps-text-red-600 ps-transition-colors ps-duration-300"
+								>
+									{{ svc.title }}
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div>
+						<h3 class="ps-text-xl ps-font-bold ps-text-white ps-mb-4">
+							Contacto
+						</h3>
+						<ul class="ps-space-y-3">
+							<li class="ps-flex ps-items-start">
+								<i
+									class="mdi mdi-map-marker ps-text-red-600 ps-mr-3 ps-mt-1"
+								></i>
+								<span>Mayor Ruffinelli e/ Palo Santo Loma Pyta – Asunción</span>
+							</li>
+							<li class="ps-flex ps-items-start">
+								<i class="mdi mdi-phone ps-text-red-600 ps-mr-3 ps-mt-1"></i>
+								<span>0994 561 777 </span>
+							</li>
+							<li class="ps-flex ps-items-start">
+								<i class="mdi mdi-email ps-text-red-600 ps-mr-3 ps-mt-1"></i>
+								<span>info@prestigioseguridad.com</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="ps-border-t ps-border-gray-800 ps-pt-8 ps-text-center">
+					<p>
+						© {{ new Date().getFullYear() }} Prestigio Seguridad. Todos los
+						derechos reservados.
+					</p>
+				</div>
 			</div>
-			<p>© 2025 Prestigio Seguridad. Todos los derechos reservados.</p>
 		</footer>
 	</div>
 </template>
 
 <style>
-	/* Estilos generales */
+	/* Estilos generales (sin cambios) */
 	.ps-bg-black {
 		background-color: #000;
 	}
@@ -394,7 +1530,7 @@
 	.ps-text-4xl {
 		font-size: 2.25rem;
 	}
-	.ps-text-5xl {
+	\n.ps-text-5xl {
 		font-size: 3rem;
 	}
 	.ps-font-bold {
@@ -405,9 +1541,6 @@
 	}
 	.ps-rounded-full {
 		border-radius: 9999px;
-	}
-	.ps-rounded {
-		border-radius: 0.25rem;
 	}
 	.ps-py-3 {
 		padding-top: 0.75rem;
