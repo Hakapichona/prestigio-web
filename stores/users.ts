@@ -2,7 +2,6 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 
 import { useCustomFetch } from '~/composables/use-customFetch'
 import { Users } from '~/models/Users.model'
-import { useAuthStore } from '~/stores/auth'
 
 export const useUsersStore = defineStore('users', () => {
     const authStore = useAuthStore()
