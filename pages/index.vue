@@ -8,6 +8,24 @@
 	import ps5 from "../assets/img/ps5.jpeg";
 	import ps6 from "../assets/img/ps6.jpeg";
 
+	import client1 from "../assets/img/client/1.png";
+	import client10 from "../assets/img/client/10.png";
+	import client11 from "../assets/img/client/11.png";
+	import client12 from "../assets/img/client/12.png";
+	import client13 from "../assets/img/client/13.png";
+	import client14 from "../assets/img/client/14.png";
+	import client15 from "../assets/img/client/15.png";
+	import client16 from "../assets/img/client/16.png";
+	import client17 from "../assets/img/client/17.png";
+	import client2 from "../assets/img/client/2.png";
+	import client3 from "../assets/img/client/3.png";
+	import client4 from "../assets/img/client/4.png";
+	import client5 from "../assets/img/client/5.png";
+	import client6 from "../assets/img/client/6.png";
+	import client7 from "../assets/img/client/7.png";
+	import client8 from "../assets/img/client/8.png";
+	import client9 from "../assets/img/client/9.png";
+
 	// Stats data
 	const stats = [
 		{ value: 250, suffix: "+", label: "Clientes que confían en nosotros" },
@@ -141,7 +159,7 @@
 			date: "20 Abr, 2025",
 			excerpt:
 				"Exploramos cómo los servicios de seguridad privada aportan valor preventivo y operativo.",
-			image: "../assets/img/logoprestigio.png",
+			image: logo,
 		},
 		{
 			title: "Tecnología aplicada a la seguridad",
@@ -149,7 +167,7 @@
 			date: "05 Mar, 2025",
 			excerpt:
 				"Cómo los sistemas inteligentes optimizan la gestión de riesgos físicos.",
-			image: "../assets/img/logoprestigio.png",
+			image: logo,
 		},
 		{
 			title: "Protocolos en eventos masivos",
@@ -157,7 +175,7 @@
 			date: "18 Feb, 2025",
 			excerpt:
 				"Medidas clave para mantener la seguridad y el orden en actividades de gran convocatoria.",
-			image: "https://via.placeholder.com/400x200",
+			image: logo,
 		},
 	];
 
@@ -310,54 +328,23 @@
 	});
 
 	const clients = [
-		{
-			name: "Banco Nacional",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Centro Comercial Plaza",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Hospital Central",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Universidad Metropolitana",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Empresa Constructora ABC",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Hotel Grand Palace",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Corporación Industrial XYZ",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Ministerio de Salud",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Aeropuerto Internacional",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Cadena de Supermercados",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Empresa de Telecomunicaciones",
-			logo: "../assets/img/logoprestigio.png",
-		},
-		{
-			name: "Centro de Convenciones",
-			logo: "../assets/img/logoprestigio.png",
-		},
+		{ name: "", logo: client1 },
+		{ name: "", logo: client2 },
+		{ name: "", logo: client3 },
+		{ name: "", logo: client4 },
+		{ name: "", logo: client5 },
+		{ name: "", logo: client6 },
+		{ name: "", logo: client7 },
+		{ name: "", logo: client8 },
+		{ name: "", logo: client9 },
+		{ name: "", logo: client10 },
+		{ name: "", logo: client11 },
+		{ name: "", logo: client12 },
+		{ name: "", logo: client13 },
+		{ name: "", logo: client14 },
+		{ name: "", logo: client15 },
+		{ name: "", logo: client16 },
+		{ name: "", logo: client17 },
 	];
 
 	const currentClientSlide = ref(0);
@@ -462,9 +449,9 @@
 		<!-- Hero / Nosotros -->
 		<section
 			id=""
-			class="ps-flex ps-flex-col-reverse md:ps-flex-row ps-items-center ps-justify-center ps-min-h-screen ps-px-6 ps-pt-24 md:ps-pt-16"
+			class="ps-flex ps-flex-col-reverse md:ps-flex-row ps-items-center ps-justify-center ps-pb-20 ps-px-6"
 		>
-			<div class="md:ps-w-1/2 ps-text-center md:ps-text-left">
+			<div class="md:ps-w-1/2 ps-text-center ps-justify-start md:ps-text-left">
 				<h2 class="ps-text-4xl md:ps-text-5xl ps-font-bold ps-mb-4">
 					PROTEJA SUS INSTALACIONES CON SEGURIDAD CONFIABLE
 				</h2>
@@ -479,17 +466,18 @@
 				>
 					Solicitar Cotización
 				</button>
-			</div>
-			<div class="md:ps-w-1/2 ps-mb-6 md:ps-mb-0">
-				<div class="ps-bg-white ps-p-4 ps-w-fit ps-h-fit ps-rounded-s-3xl">
+				<div
+					class="ps-bg-gray-700 ps-rounded-xl ps-shadow-lg ps-p-4 ps-mt-8 ps-w-fit"
+				>
 					<img
 						src="../assets/img/24-7.png"
-						alt="Guardias en acción"
-						class="ps-rounded ps-shadow-lg ps-mx-auto"
+						alt="Prestigio Seguridad"
+						height="100"
 						width="100"
-						height="80"
 					/>
 				</div>
+			</div>
+			<div class="md:ps-w-1/2 } md:ps-mb-0">
 				<img
 					src="../assets/img/logoprestigio.png"
 					alt="Guardias en acción"
@@ -499,7 +487,7 @@
 		</section>
 
 		<!-- Stats / Servicios -->
-		<section id="" class="ps-py-16 ps-bg-gray-900">
+		<section id="" class="ps-py-16 ps-bg-gray-700">
 			<div
 				class="ps-container ps-mx-auto ps-px-4 ps-grid ps-grid-cols-2 md:ps-grid-cols-4 ps-text-center ps-gap-8"
 			>
@@ -619,7 +607,7 @@
 					class="ps-grid ps-grid-cols-1 lg:ps-grid-cols-2 ps-gap-12 ps-items-start"
 				>
 					<div
-						class="ps-bg-gray-800 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
+						class="ps-bg-gray-700 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
 					>
 						<div class="ps-flex ps-items-center ps-mb-6">
 							<div class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4">
@@ -661,7 +649,7 @@
 					</div>
 
 					<div
-						class="ps-bg-gray-800 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
+						class="ps-bg-gray-700 ps-p-8 ps-rounded-lg ps-shadow-lg ps-transform ps-hover:ps-scale-105 ps-transition-transform ps-duration-300"
 					>
 						<div class="ps-flex ps-items-center ps-mb-6">
 							<div class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4">
@@ -1248,8 +1236,9 @@
 									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
 										Email
 									</h4>
-									<p class="ps-text-gray-300">info@prestigioseguridad.com</p>
-									<p class="ps-text-gray-300">ventas@prestigioseguridad.com</p>
+									<p class="ps-text-gray-300">
+										contacto@prestigioseguridad.com
+									</p>
 								</div>
 							</div>
 
@@ -1431,7 +1420,7 @@
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-email ps-text-red-600 ps-mr-3 ps-mt-1"></i>
-								<span>info@prestigioseguridad.com</span>
+								<span>contacto@prestigioseguridad.com</span>
 							</li>
 						</ul>
 					</div>
