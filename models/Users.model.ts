@@ -3,15 +3,11 @@ export enum UserRoles {
     ADMIN = 'ADMIN',
 }
 export interface Users {
-    firstName: string;
-    lastName: string;
+
     fullName: string;
-    birthday: string;
-    dni: number;
     email: string;
     password: string;
-    role: UserRoles;
-    // company: Company
+    // company: Companyx
 }
 
 export interface UserDto {

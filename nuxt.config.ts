@@ -2,7 +2,6 @@ import "dayjs/locale/es";
 
 export default defineNuxtConfig({
   ssr: false,
-  modules: ['@pinia/nuxt'],
 
 
   app: {
@@ -36,7 +35,7 @@ export default defineNuxtConfig({
     },
   ],
 
-  modules: ["@nuxtjs/tailwindcss", "nuxt-svgo", "dayjs-nuxt"],
+  modules: ["@nuxtjs/tailwindcss", "nuxt-svgo", "dayjs-nuxt", '@pinia/nuxt'],
 
   svgo: {
     autoImportPath: "./assets/svg/",
@@ -80,6 +79,14 @@ export default defineNuxtConfig({
       apiBaseUrl: process.env.NUXT_PUBLIC_API_URL,
     },
   },
+
+
+
+  pinia: {
+    storesDirs: ["~/stores/**", "~/stores/**", "@/stores/**"],
+  },
+
+
 
   compatibilityDate: "2024-11-01",
 });
