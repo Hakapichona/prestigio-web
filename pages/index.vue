@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import "@mdi/font/css/materialdesignicons.min.css";
 	import logo from "../assets/img/logoprestigio.png";
-	import ps1 from "../assets/img/ps1.jpeg";
 	import ps2 from "../assets/img/ps2.jpeg";
 	import ps3 from "../assets/img/ps3.jpeg";
 	import ps4 from "../assets/img/ps4.jpeg";
@@ -253,11 +252,6 @@
 
 	// Galería de fotos
 	const galleryImages = [
-		{
-			src: ps1,
-			alt: "Equipo de seguridad en acción",
-			caption: "Nuestro equipo en operaciones especiales",
-		},
 		{
 			src: ps2,
 			alt: "Centro de monitoreo",
