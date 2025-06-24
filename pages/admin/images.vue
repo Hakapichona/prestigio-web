@@ -12,6 +12,8 @@
 	const filterType = ref("Todos");
 
 	const imagePreviews = ref([]);
+	const config = useRuntimeConfig();
+	const apiBaseUrl = config.public.apiUrl;
 
 	const imageTypes = ["Todos", "JPG", "PNG", "GIF", "SVG"];
 
@@ -55,10 +57,22 @@
 	// ]);
 
 	const images = ref([]);
-
 	const fetchImages = async () => {
 		try {
-			images.value = await getAllImages();
+			const result = await getAllImages();
+
+			images.value = result.map((img) => {
+				const name = img.filePath.split("/").pop();
+				const type = img.filePath.split(".").pop()?.toUpperCase() || "IMG";
+
+				return {
+					id: img.uuid,
+					url: `${apiBaseUrl}${img.filePath}`,
+					name,
+					type,
+					uploadDate: new Date(img.updatedAt).toLocaleDateString(),
+				};
+			});
 		} catch (e: any) {
 			console.error(e);
 		}
