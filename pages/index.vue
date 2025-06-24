@@ -192,7 +192,7 @@
 	// Footer social links
 	const footerSocials = [
 		{ icon: "mdi mdi-facebook", link: "#" },
-		{ icon: "mdi mdi-twitter", link: "#" },
+		{ icon: "mdi mdi-whatsapp", link: "https://wa.link/p53g6s" },
 		{ icon: "mdi mdi-linkedin", link: "#" },
 		{ icon: "mdi mdi-instagram", link: "#" },
 	];
@@ -1412,7 +1412,7 @@
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-phone ps-text-red-600 ps-mr-3 ps-mt-1"></i>
-								<span>0994 561 777 </span>
+								<span>+595 994 399514 </span>
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-email ps-text-red-600 ps-mr-3 ps-mt-1"></i>

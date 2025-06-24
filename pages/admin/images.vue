@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { useGaleryComposable } from "~/composables/use-galery.composable";
 
-	const { uploadImage } = useGaleryComposable();
+	const { uploadImage, getAllImages } = useGaleryComposable();
 
 	const uploadDialog = ref(false);
 	const imageModal = ref(false);
@@ -15,44 +15,58 @@
 
 	const imageTypes = ["Todos", "JPG", "PNG", "GIF", "SVG"];
 
-	const images = ref([
-		{
-			id: 1,
-			name: "hero-banner.jpg",
-			url: "/placeholder.svg?height=300&width=400",
-			size: "2.4 MB",
-			type: "JPG",
-			uploadDate: "2024-01-15",
-			dimensions: "1920x1080",
-		},
-		{
-			id: 2,
-			name: "product-image.png",
-			url: "/placeholder.svg?height=300&width=400",
-			size: "1.8 MB",
-			type: "PNG",
-			uploadDate: "2024-01-14",
-			dimensions: "1200x800",
-		},
-		{
-			id: 3,
-			name: "logo.svg",
-			url: "/placeholder.svg?height=300&width=400",
-			size: "45 KB",
-			type: "SVG",
-			uploadDate: "2024-01-13",
-			dimensions: "500x200",
-		},
-		{
-			id: 4,
-			name: "background.jpg",
-			url: "/placeholder.svg?height=300&width=400",
-			size: "3.2 MB",
-			type: "JPG",
-			uploadDate: "2024-01-12",
-			dimensions: "2560x1440",
-		},
-	]);
+	// const images = ref([
+	// 	{
+	// 		id: 1,
+	// 		name: "hero-banner.jpg",
+	// 		url: "/placeholder.svg?height=300&width=400",
+	// 		size: "2.4 MB",
+	// 		type: "JPG",
+	// 		uploadDate: "2024-01-15",
+	// 		dimensions: "1920x1080",
+	// 	},
+	// 	{
+	// 		id: 2,
+	// 		name: "product-image.png",
+	// 		url: "/placeholder.svg?height=300&width=400",
+	// 		size: "1.8 MB",
+	// 		type: "PNG",
+	// 		uploadDate: "2024-01-14",
+	// 		dimensions: "1200x800",
+	// 	},
+	// 	{
+	// 		id: 3,
+	// 		name: "logo.svg",
+	// 		url: "/placeholder.svg?height=300&width=400",
+	// 		size: "45 KB",
+	// 		type: "SVG",
+	// 		uploadDate: "2024-01-13",
+	// 		dimensions: "500x200",
+	// 	},
+	// 	{
+	// 		id: 4,
+	// 		name: "background.jpg",
+	// 		url: "/placeholder.svg?height=300&width=400",
+	// 		size: "3.2 MB",
+	// 		type: "JPG",
+	// 		uploadDate: "2024-01-12",
+	// 		dimensions: "2560x1440",
+	// 	},
+	// ]);
+
+	const images = ref([]);
+
+	const fetchImages = async () => {
+		try {
+			images.value = await getAllImages();
+		} catch (e: any) {
+			console.error(e);
+		}
+	};
+
+	onMounted(() => {
+		fetchImages();
+	});
 
 	const snackbar = reactive({
 		show: false,
