@@ -19,9 +19,49 @@ import client6 from "../assets/img/client/6.png";
 import client7 from "../assets/img/client/7.png";
 import client8 from "../assets/img/client/8.png";
 import client9 from "../assets/img/client/9.png";
-import { required } from "~/utils/validator";
 
+import { ContactDto, contactDtoInitialState } from "~/models/Contact.model";
+import { required } from "~/utils/validator";
+import { useToast } from "vue-toastification";
+
+const contactComposable = useContactComposable();
 const { getAllImages } = useGaleryComposable();
+
+const toast = useToast();
+
+const field = ref<ContactDto>(contactDtoInitialState());
+const incomplete = ref<boolean>(true);
+const loading = ref<boolean>(false);
+const form = ref();
+
+const sendMailRequest = async () => {
+  loading.value = true;
+  const form = new FormData();
+  form.append("name", field.value.name);
+  form.append("email", field.value.email);
+  form.append("phone", field.value.phone);
+  form.append("subject", field.value.subject);
+  form.append("message", field.value.message);
+  form.append("cv", field.value.cv);
+
+  try {
+    await contactComposable.sendContactEmail(form);
+    field.value = contactDtoInitialState();
+    toast.success("Se ha enviado la solicitud");
+  } catch (error: any) {
+    toast.error(error.message.toString());
+  } finally {
+    loading.value = false;
+  }
+};
+
+const validate = () => {
+  incomplete.value = !form.value?.isValid;
+};
+
+const handleFile = (event: any) => {
+  field.value.cv = event.target.files[0];
+};
 
 // Stats data
 const stats = [
