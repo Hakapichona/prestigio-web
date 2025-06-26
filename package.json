@@ -7,7 +7,7 @@
     "dev": "nuxt dev --port=8080",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "PORT=8080 nuxt start",
+    "start": "node .output/server/index.mjs",
     "postinstall": "nuxt prepare",
     "lint:js": "eslint --ext .ts,.js,.vue .",
     "lint": "yarn lint:js",
