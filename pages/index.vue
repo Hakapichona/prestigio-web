@@ -188,12 +188,12 @@
 	const footerSocials = [
 		{
 			icon: "mdi mdi-facebook",
-			link: "#https://www.facebook.com/p/Prestigio-Seguridad-Privada-100063575560289/?locale=es_LA",
+			link: "https://www.facebook.com/p/Prestigio-Seguridad-Privada-100063575560289/?locale=es_LA",
 		},
 		{ icon: "mdi mdi-whatsapp", link: "https://wa.link/p53g6s" },
 		{
 			icon: "mdi mdi-instagram",
-			link: "#https://www.instagram.com/prestigioseguridadprivada?igsh=MWtvNTVhNmptcWd1NQ==",
+			link: "https://www.instagram.com/prestigioseguridadprivada?igsh=MWtvNTVhNmptcWd1NQ==",
 		},
 	];
 
