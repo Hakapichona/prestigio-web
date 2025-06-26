@@ -94,7 +94,7 @@
 			rel="noopener noreferrer"
 			class="ps-hidden md:ps-block ps-bg-red-600 ps-text-white ps-px-4 ps-py-2 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
 		>
-			Contáctanos
+			Prestigio Seguridad
 		</button>
 
 		<!-- Botón de menú hamburguesa (visible en móvil) -->
@@ -157,7 +157,7 @@
 					rel="noopener noreferrer"
 					class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300 inline-block"
 				>
-					Contáctanos
+					Prestigio Seguridad
 				</a>
 			</div>
 		</nav>

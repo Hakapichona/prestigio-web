@@ -67,7 +67,7 @@
 					Manténgase informado con nuestros artículos sobre seguridad,
 					tendencias y mejores prácticas.
 				</p>
-				<div class="ps-flex ps-justify-center ps-space-x-4">
+				<!-- <div class="ps-flex ps-justify-center ps-space-x-4">
 					<a
 						href="#categorias"
 						class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded-md ps-hover:ps-bg-red-700 ps-transition ps-duration-300 ps-transform ps-hover:ps-scale-105 ps-relative ps-overflow-hidden ps-group"
@@ -77,7 +77,7 @@
 							class="ps-absolute ps-inset-0 ps-bg-white/20 ps-transform ps-translate-y-full ps-group-hover:ps-translate-y-0 ps-transition-transform ps-duration-300"
 						></span>
 					</a>
-				</div>
+				</div> -->
 			</div>
 
 			<!-- Partículas específicas del header -->

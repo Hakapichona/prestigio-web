@@ -1,18 +1,18 @@
-import { NitroFetchRequest } from "nitropack";
 import { navigateTo, UseFetchOptions } from "#app";
 import { KeyOfRes } from "#app/composables/asyncData";
+import { NitroFetchRequest } from "nitropack";
 
 export function useCustomFetch<T>(
   request: NitroFetchRequest,
   opts?:
     | UseFetchOptions<
-        T extends void ? unknown : T,
-        (res: T extends void ? unknown : T) => T extends void ? unknown : T,
-        // @ts-ignore
-        KeyOfRes<
-          (res: T extends void ? unknown : T) => T extends void ? unknown : T
-        >
+      T extends void ? unknown : T,
+      (res: T extends void ? unknown : T) => T extends void ? unknown : T,
+      // @ts-ignore
+      KeyOfRes<
+        (res: T extends void ? unknown : T) => T extends void ? unknown : T
       >
+    >
     | undefined,
 ) {
   const config = useRuntimeConfig();
