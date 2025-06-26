@@ -1,5 +1,7 @@
 <script setup lang="ts">
 	import ParticlesBackground from "@/components/ParticlesBackground.vue";
+	import logo from "../assets/img/logoprestigio.png";
+
 	// Blog posts
 	const blogPosts = ref([
 		{
@@ -9,7 +11,7 @@
 			date: "20 Abr, 2025",
 			excerpt:
 				"Descubra cómo fortalecer su perímetro con estrategias comprobadas.",
-			image: "https://via.placeholder.com/400x200",
+			image: logo,
 		},
 		{
 			id: 2,
@@ -18,7 +20,7 @@
 			date: "05 Mar, 2025",
 			excerpt:
 				"Implementaciones de control de acceso para instalaciones críticas.",
-			image: "https://via.placeholder.com/400x200",
+			image: logo,
 		},
 		{
 			id: 3,
@@ -26,7 +28,7 @@
 			category: "Operaciones",
 			date: "18 Feb, 2025",
 			excerpt: "Mejores prácticas para patrullaje móvil y disuasión.",
-			image: "https://via.placeholder.com/400x200",
+			image: logo,
 		},
 	]);
 
