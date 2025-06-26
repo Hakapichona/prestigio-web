@@ -89,6 +89,9 @@
 
 		<!-- Botón de contacto (visible en escritorio) -->
 		<button
+			href="https://wa.link/3kygvg"
+			target="_blank"
+			rel="noopener noreferrer"
 			class="ps-hidden md:ps-block ps-bg-red-600 ps-text-white ps-px-4 ps-py-2 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
 		>
 			Contáctanos

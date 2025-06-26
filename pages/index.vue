@@ -389,11 +389,14 @@
 					</li>
 				</ul>
 			</nav>
-			<button
+			<!-- <button
+				href="https://wa.link/3kygvg"
+				target="_blank"
+				rel="noopener noreferrer"
 				class="ps-bg-red-600 ps-px-4 ps-py-2 ps-rounded ps-text-white ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
 			>
 				Contáctanos
-			</button>
+			</button> -->
 
 			<!-- Mobile menu button (could be expanded with dropdown functionality) -->
 			<button class="ps-md:ps-hidden ps-text-white">
@@ -417,7 +420,7 @@
 					para que usted disfrute de mayor tranquilidad.
 				</p>
 				<a
-					href="https://wa.link/p53g6s"
+					href="https://wa.link/3kygvg"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300 inline-block"
