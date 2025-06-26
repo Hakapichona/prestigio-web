@@ -58,6 +58,7 @@
 
 <template>
 	<header
+		v-bind="$attrs"
 		class="ps-fixed ps-top-0 ps-w-full ps-bg-black/80 ps-backdrop-blur ps-flex ps-justify-between ps-items-center ps-p-4 ps-z-50"
 	>
 		<!-- Logo -->
@@ -171,10 +172,6 @@
 
 	<!-- Espacio para compensar el header fijo -->
 	<div class="ps-h-24"></div>
-
-	<div v-if="!$vuetify.display.mdAndUp">
-		<test />
-	</div>
 </template>
 
 <style scoped>

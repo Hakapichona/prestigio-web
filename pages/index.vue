@@ -147,47 +147,6 @@
 
 	const toggleFaq = (i) => (faqs[i].isOpen = !faqs[i].isOpen);
 
-	// Team data with improved structure
-	// const team = [
-	// 	{
-	// 		name: "Eduardo Acosta",
-	// 		position: "Director General",
-	// 		image: "../assets/img/logoprestigio.png",
-	// 		bio: "Con más de 20 años de experiencia en el sector de seguridad, lidera la visión estratégica de la empresa.",
-	// 		socials: [
-	// 			{ icon: "mdi mdi-linkedin", link: "#" },
-	// 			{ icon: "mdi mdi-twitter", link: "#" },
-	// 		],
-	// 	},
-	// 	{
-	// 		name: "Laura Giménez",
-	// 		position: "Jefa de Operaciones",
-	// 		image: logo,
-	// 		bio: "Especialista en logística y coordinación de equipos de seguridad en situaciones de alto riesgo.",
-	// 		socials: [{ icon: "mdi mdi-linkedin", link: "#" }],
-	// 	},
-	// 	{
-	// 		name: "Luis Benítez",
-	// 		position: "Coordinador de Seguridad",
-	// 		image: "../assets/img/logoprestigio.png",
-	// 		bio: "Experto en protocolos de seguridad y capacitación de personal de vigilancia.",
-	// 		socials: [
-	// 			{ icon: "mdi mdi-linkedin", link: "#" },
-	// 			{ icon: "mdi mdi-facebook", link: "#" },
-	// 		],
-	// 	},
-	// 	{
-	// 		name: "María Rodríguez",
-	// 		position: "Directora de Tecnología",
-	// 		image: "../assets/img/logoprestigio.png",
-	// 		bio: "Ingeniera especializada en sistemas de vigilancia y monitoreo remoto.",
-	// 		socials: [
-	// 			{ icon: "mdi mdi-linkedin", link: "#" },
-	// 			{ icon: "mdi mdi-github", link: "#" },
-	// 		],
-	// 	},
-	// ];
-
 	// Blog posts data
 	const blogPosts = [
 		{
@@ -221,8 +180,6 @@
 		{ label: "Nosotros", target: "nosotros" },
 		{ label: "Servicios", target: "servicios" },
 		{ label: "VigiControl", target: "vigicontrol" },
-		{ label: "Equipo", target: "equipo" },
-		{ label: "Galería", target: "galeria" },
 		{ label: "Blog", target: "blog" },
 		{ label: "Contacto", target: "contacto" },
 	];
@@ -283,7 +240,7 @@
 				setTimeout(() => (formSubmitted.value = false), 5000);
 			})
 			.catch((err) => {
-				console.error("EmailJS error:", err);
+				toast.error("EmailJS error:", err.message.toString());
 				formError.value = true;
 			});
 	};
@@ -312,16 +269,7 @@
 		currentSlide.value = (currentSlide.value + 1) % images.value.length;
 	};
 
-	const prevSlide = () => {
-		currentSlide.value = (currentSlide.value - 1 + team.length) % team.length;
-	};
-
-	const goToSlide = (index) => {
-		currentSlide.value = index;
-	};
-
 	const startSlideshow = () => {
-		console.log(setInterval(nextSlide, 5000), "set interval");
 		stopSlideshow();
 		slideInterval.value = setInterval(nextSlide, 5000);
 	};
@@ -333,13 +281,6 @@
 	};
 
 	// Scroll to section function
-	const scrollToSection2 = (id) => {
-		console.log("scrolling to", id);
-		const el = document.getElementById(id);
-		if (el) {
-			el.scrollIntoView({ behavior: "smooth", block: "start" });
-		}
-	};
 
 	const clients = [
 		{ name: "", logo: client1 },
@@ -404,7 +345,6 @@
 
 	// Scroll to section function
 	const scrollToSection = (id) => {
-		console.log("scrolling to", id);
 		const el = document.getElementById(id);
 		if (el) {
 			el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -971,12 +911,11 @@
 				</div>
 			</div> -->
 
-			<v-carousel hide-delimiters cycle interval="2500" show-arrows="false">
+			<v-carousel hide-delimiters cycle interval="2500">
 				<v-carousel-item
 					v-for="(item, index) in images"
 					:key="index"
 					class="ps-group ps-relative ps-overflow-hidden ps-rounded-lg ps-shadow-lg ps-object-contain"
-					show-arrows="hover"
 					:src="apiBaseUrl + item.filePath"
 				></v-carousel-item>
 			</v-carousel>
