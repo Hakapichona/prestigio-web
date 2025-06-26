@@ -1069,7 +1069,7 @@
 							</h3>
 							<p class="ps-text-gray-400 ps-mb-4">{{ post.excerpt }}</p>
 							<a
-								href="#"
+								href="/blog"
 								class="ps-text-red-600 ps-font-semibold ps-hover:ps-text-red-500 ps-transition-colors ps-duration-300 ps-flex ps-items-center"
 							>
 								Leer más
