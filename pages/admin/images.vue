@@ -13,68 +13,16 @@
 
 	const imagePreviews = ref([]);
 	const config = useRuntimeConfig();
-	const apiBaseUrl = config.public.apiUrl;
+	const apiBaseUrl = "http://31.97.168.129:3000";
 
 	const imageTypes = ["Todos", "JPG", "PNG", "GIF", "SVG"];
-
-	// const images = ref([
-	// 	{
-	// 		id: 1,
-	// 		name: "hero-banner.jpg",
-	// 		url: "/placeholder.svg?height=300&width=400",
-	// 		size: "2.4 MB",
-	// 		type: "JPG",
-	// 		uploadDate: "2024-01-15",
-	// 		dimensions: "1920x1080",
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		name: "product-image.png",
-	// 		url: "/placeholder.svg?height=300&width=400",
-	// 		size: "1.8 MB",
-	// 		type: "PNG",
-	// 		uploadDate: "2024-01-14",
-	// 		dimensions: "1200x800",
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		name: "logo.svg",
-	// 		url: "/placeholder.svg?height=300&width=400",
-	// 		size: "45 KB",
-	// 		type: "SVG",
-	// 		uploadDate: "2024-01-13",
-	// 		dimensions: "500x200",
-	// 	},
-	// 	{
-	// 		id: 4,
-	// 		name: "background.jpg",
-	// 		url: "/placeholder.svg?height=300&width=400",
-	// 		size: "3.2 MB",
-	// 		type: "JPG",
-	// 		uploadDate: "2024-01-12",
-	// 		dimensions: "2560x1440",
-	// 	},
-	// ]);
 
 	const images = ref([]);
 	const fetchImages = async () => {
 		try {
-			const result = await getAllImages();
-
-			images.value = result.map((img) => {
-				const name = img.filePath.split("/").pop();
-				const type = img.filePath.split(".").pop()?.toUpperCase() || "IMG";
-
-				return {
-					id: img.uuid,
-					url: `${apiBaseUrl}${img.filePath}`,
-					name,
-					type,
-					uploadDate: new Date(img.updatedAt).toLocaleDateString(),
-				};
-			});
+			images.value = await getAllImages();
 		} catch (e: any) {
-			console.error(e);
+			console.error("Error al obtener imágenes", e);
 		}
 	};
 
@@ -86,22 +34,6 @@
 		show: false,
 		message: "",
 		color: "success",
-	});
-
-	const filteredImages = computed(() => {
-		let filtered = images.value;
-
-		if (searchQuery.value) {
-			filtered = filtered.filter((img) =>
-				img.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-			);
-		}
-
-		if (filterType.value !== "Todos") {
-			filtered = filtered.filter((img) => img.type === filterType.value);
-		}
-
-		return filtered;
 	});
 
 	const previewImages = () => {
@@ -124,33 +56,14 @@
 		if (!selectedFiles.value || selectedFiles.value.length === 0) return;
 
 		uploadLoading.value = true;
-
 		try {
-			const uploadedImages = [];
-
 			for (const [index, file] of Array.from(selectedFiles.value).entries()) {
 				const uploaded = await uploadImage(file);
-				uploadedImages.push({
-					id: Date.now() + index,
-					name: file.name,
-					url: uploaded.filePath,
-					size: (file.size / (1024 * 1024)).toFixed(1) + " MB",
-					type: file.type.split("/")[1].toUpperCase(),
-					uploadDate: new Date().toISOString().split("T")[0],
-					dimensions: "1920x1080", // opcional: podés agregar análisis real
-				});
+				images.value.unshift(uploaded);
 			}
 
-			images.value.unshift(...uploadedImages);
-
-			showNotification(
-				`${uploadedImages.length} imagen(es) subida(s) exitosamente`,
-				"success"
-			);
 			closeUploadDialog();
 		} catch (error) {
-			console.error(error);
-			console.error(" Error detallado:", error);
 			alert(error.message || "Error desconocido");
 			showNotification("Error al subir imágenes", "error");
 		} finally {
@@ -162,11 +75,6 @@
 		uploadDialog.value = false;
 		selectedFiles.value = null;
 		imagePreviews.value = [];
-	};
-
-	const openImageModal = (image) => {
-		selectedImage.value = image;
-		imageModal.value = true;
 	};
 
 	const deleteImage = (id) => {
@@ -251,55 +159,58 @@
 						class="ps-grid ps-grid-cols-1 md:ps-grid-cols-3 lg:ps-grid-cols-4 xl:ps-grid-cols-5 ps-gap-4"
 					>
 						<div
-							v-for="image in filteredImages"
-							:key="image.id"
+							v-for="(item, index) in images"
+							:key="index"
 							class="ps-relative ps-group ps-bg-gray-100 ps-rounded-lg ps-overflow-hidden"
 						>
+							<p class="ps-text-white">
+								{{ apiBaseUrl }}
+							</p>
 							<img
-								:src="image.url"
-								:alt="image.name"
+								:src="apiBaseUrl + item.filePath"
+								:alt="item.uuid"
 								class="ps-w-full ps-h-40 ps-object-cover"
-								@click="openImageModal(image)"
+								@click="openImageModal(`${apiBaseUrl}${item.filePath}`)"
 							/>
 
 							<!-- Overlay with actions -->
 							<div
 								class="ps-absolute ps-inset-0 ps-bg-black ps-bg-opacity-50 ps-opacity-0 group-hover:ps-opacity-100 ps-transition-opacity ps-flex ps-items-center ps-justify-center ps-space-x-2"
 							>
-								<v-btn
-									@click="openImageModal(image)"
+								<!-- <v-btn
+									@click="openImageModal(item)"
 									icon="mdi-eye"
 									size="small"
 									color="white"
 									variant="elevated"
-								></v-btn>
+								></v-btn> -->
 								<v-btn
-									@click="copyImageUrl(image.url)"
+									@click="copyImageUrl(`${apiBaseUrl}${item.filePath}`)"
 									icon="mdi-content-copy"
 									size="small"
 									color="white"
 									variant="elevated"
 								></v-btn>
-								<v-btn
-									@click="deleteImage(image.id)"
+								<!-- <v-btn
+									@click="deleteImage(item.uuid)"
 									icon="mdi-delete"
 									size="small"
 									color="error"
 									variant="elevated"
-								></v-btn>
+								></v-btn> -->
 							</div>
 
 							<!-- Image info -->
-							<div class="ps-p-3">
+							<!-- <div class="ps-p-3">
 								<p
 									class="ps-text-sm ps-font-medium ps-text-gray-900 ps-truncate"
 								>
-									{{ image.name }}
+									{{ item.filePath }}
 								</p>
 								<p class="ps-text-xs ps-text-gray-500">
 									{{ image.size }} • {{ image.type }}
 								</p>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</v-card-text>

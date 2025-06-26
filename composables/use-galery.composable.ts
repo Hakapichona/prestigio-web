@@ -43,12 +43,14 @@ export const useGaleryComposable = () => {
     };
 
     const getAllImages = async () => {
-        const { data, error } = await useCustomFetch('/upload')
-        if (data.value) {
-            data.value
+        const { data, error } = await useCustomFetch('/upload');
+        console.log('getAllImages', data.value);
+        if (error.value) {
+            throw new Error(error.value);
         }
-        throw new Error(error)
-    }
+
+        return data.value;
+    };
 
     return {
         uploadImage,

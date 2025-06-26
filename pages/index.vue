@@ -1,11 +1,6 @@
 <script setup lang="ts">
 	import "@mdi/font/css/materialdesignicons.min.css";
 	import logo from "../assets/img/logoprestigio.png";
-	import ps2 from "../assets/img/ps2.jpeg";
-	import ps3 from "../assets/img/ps3.jpeg";
-	import ps4 from "../assets/img/ps4.jpeg";
-	import ps5 from "../assets/img/ps5.jpeg";
-	import ps6 from "../assets/img/ps6.jpeg";
 
 	import client1 from "../assets/img/client/1.png";
 	import client10 from "../assets/img/client/10.png";
@@ -24,6 +19,8 @@
 	import client7 from "../assets/img/client/7.png";
 	import client8 from "../assets/img/client/8.png";
 	import client9 from "../assets/img/client/9.png";
+
+	const { getAllImages } = useGaleryComposable();
 
 	// Stats data
 	const stats = [
@@ -251,40 +248,27 @@
 	};
 
 	// Galería de fotos
-	const galleryImages = [
-		{
-			src: ps2,
-			alt: "Centro de monitoreo",
-			caption: "Centro de monitoreo 24/7",
-		},
-		{
-			src: ps3,
-			alt: "Patrulla de seguridad",
-			caption: "Unidades móviles de respuesta rápida",
-		},
-		{
-			src: ps4,
-			alt: "Capacitación de personal",
-			caption: "Entrenamiento especializado para nuestro personal",
-		},
-		{
-			src: ps5,
-			alt: "Tecnología de vigilancia",
-			caption: "Sistemas de última generación",
-		},
-		{
-			src: ps6,
-			alt: "Seguridad en eventos",
-			caption: "Cobertura profesional para eventos corporativos",
-		},
-	];
+	const images = ref([]);
+	const apiBaseUrl = "http://31.97.168.129:3000";
+
+	const fetchImages = async () => {
+		try {
+			images.value = await getAllImages();
+		} catch (e: any) {
+			console.error("Error al obtener imágenes", e);
+		}
+	};
+
+	onMounted(() => {
+		fetchImages();
+	});
 
 	// Carrusel de equipo
 	const currentSlide = ref(0);
 	const slideInterval = ref(null);
 
 	const nextSlide = () => {
-		currentSlide.value = (currentSlide.value + 1) % team.length;
+		currentSlide.value = (currentSlide.value + 1) % images.value.length;
 	};
 
 	const prevSlide = () => {
@@ -296,6 +280,7 @@
 	};
 
 	const startSlideshow = () => {
+		console.log(setInterval(nextSlide, 5000), "set interval");
 		stopSlideshow();
 		slideInterval.value = setInterval(nextSlide, 5000);
 	};
@@ -314,14 +299,6 @@
 			el.scrollIntoView({ behavior: "smooth", block: "start" });
 		}
 	};
-
-	onMounted(() => {
-		// Ensure smooth scrolling even if CSS fails
-		document.documentElement.style.scrollBehavior = "smooth";
-
-		// Start team carousel
-		startSlideshow();
-	});
 
 	const clients = [
 		{ name: "", logo: client1 },
@@ -394,16 +371,12 @@
 	};
 
 	onMounted(() => {
-		// Ensure smooth scrolling even if CSS fails
 		document.documentElement.style.scrollBehavior = "smooth";
 
-		// Start team carousel
 		startSlideshow();
 
-		// Start client carousel
 		startClientSlideshow();
 
-		// Update clients per view on resize
 		updateClientsPerView();
 		window.addEventListener("resize", updateClientsPerView);
 	});
@@ -457,11 +430,14 @@
 					servicio, enfocado en brindar seguridad con compromiso y eficiencia,
 					para que usted disfrute de mayor tranquilidad.
 				</p>
-				<button
-					class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
+				<a
+					href="https://wa.link/p53g6s"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300 inline-block"
 				>
 					Solicitar Cotización
-				</button>
+				</a>
 				<div
 					class="ps-bg-gray-700 ps-rounded-xl ps-shadow-lg ps-p-4 ps-mt-8 ps-w-fit"
 				>
@@ -859,11 +835,14 @@
 							</div>
 
 							<div class="ps-mt-8 ps-text-center">
-								<button
-									class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
+								<a
+									href="https://wa.link/p53g6s"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300 inline-block"
 								>
 									Solicitar Demostración
-								</button>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -907,7 +886,7 @@
 		</section>
 
 		<!-- Galería de Fotos (Nueva sección) -->
-		<section id="pagina" class="ps-py-16 ps-bg-black">
+		<section id="" class="ps-py-16 ps-bg-black">
 			<!-- <div class="ps-container ps-mx-auto ps-px-4">
 				<h2
 					class="ps-text-3xl ps-font-bold ps-text-center ps-mb-12 ps-relative"
@@ -953,11 +932,11 @@
 
 			<v-carousel>
 				<v-carousel-item
-					v-for="(image, index) in galleryImages"
+					v-for="(item, index) in images"
 					:key="index"
 					class="ps-group ps-relative ps-overflow-hidden ps-rounded-lg ps-shadow-lg ps-object-contain"
 					show-arrows="hover"
-					:src="image"
+					:src="apiBaseUrl + item.filePath"
 				></v-carousel-item>
 			</v-carousel>
 		</section>
