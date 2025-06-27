@@ -11,6 +11,7 @@
 	import client15 from "../assets/img/client/15.png";
 	import client16 from "../assets/img/client/16.png";
 	import client17 from "../assets/img/client/17.png";
+	import client18 from "../assets/img/client/18.png";
 	import client2 from "../assets/img/client/2.png";
 	import client3 from "../assets/img/client/3.png";
 	import client4 from "../assets/img/client/4.png";
@@ -290,6 +291,7 @@
 	const clients = [
 		{ name: "", logo: client1 },
 		{ name: "", logo: client2 },
+		{ name: "", logo: client18 },
 		{ name: "", logo: client3 },
 		{ name: "", logo: client4 },
 		{ name: "", logo: client5 },
@@ -495,7 +497,11 @@
 							Nuestra Historia
 						</h3>
 						<p class="ps-text-gray-300 ps-text-lg ps-leading-relaxed ps-mb-6">
-							<span class="ps-text-red-600 ps-font-bold">PRESTIGIO S.R.L.</span>
+							En
+
+							<span class="ps-text-red-600 ps-font-bold">
+								PRESTIGIO S.R.L.</span
+							>
 							llevamos más de
 							<span class="ps-text-white ps-font-bold"
 								>30 años consolidándonos </span
@@ -919,13 +925,14 @@
 				</div>
 			</div> -->
 
-			<v-carousel hide-delimiters cycle interval="2500">
-				<v-carousel-item
-					v-for="(item, index) in images"
-					:key="index"
-					class="ps-group ps-relative ps-overflow-hidden ps-rounded-lg ps-shadow-lg ps-object-contain"
-					:src="apiBaseUrl + item.filePath"
-				></v-carousel-item>
+			<v-carousel hide-delimiters cycle interval="2500" height="500">
+				<v-carousel-item v-for="(item, index) in images" :key="index">
+					<img
+						:src="apiBaseUrl + item.filePath"
+						class="ps-w-full ps-h-full ps-object-contain"
+						:alt="'Imagen ' + index"
+					/>
+				</v-carousel-item>
 			</v-carousel>
 		</section>
 
@@ -1129,7 +1136,7 @@
 						></i>
 						<span class="ps-text-white ps-font-semibold">
 							Más de
-							<span class="ps-text-red-600 ps-font-bold">28 años</span>
+							<span class="ps-text-red-600 ps-font-bold">30 años</span>
 							protegiendo lo que más valoras
 						</span>
 					</div>
