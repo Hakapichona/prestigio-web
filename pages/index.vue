@@ -925,13 +925,14 @@
 				</div>
 			</div> -->
 
-			<v-carousel hide-delimiters cycle interval="2500">
-				<v-carousel-item
-					v-for="(item, index) in images"
-					:key="index"
-					class="ps-group ps-relative ps-overflow-hidden ps-rounded-lg ps-shadow-lg ps-object-contain"
-					:src="apiBaseUrl + item.filePath"
-				></v-carousel-item>
+			<v-carousel hide-delimiters cycle interval="2500" height="500">
+				<v-carousel-item v-for="(item, index) in images" :key="index">
+					<img
+						:src="apiBaseUrl + item.filePath"
+						class="ps-w-full ps-h-full ps-object-contain"
+						:alt="'Imagen ' + index"
+					/>
+				</v-carousel-item>
 			</v-carousel>
 		</section>
 
