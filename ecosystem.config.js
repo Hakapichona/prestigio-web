@@ -4,7 +4,7 @@ export const apps = [
     script: "node",
     args: ".output/server/index.mjs",
     env: {
-      PORT: 8080,
+      NITRO_PORT: 8080,
       NUXT_PUBLIC_API_URL: "https://tu-backend:3000/api",
     },
   },
