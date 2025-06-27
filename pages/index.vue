@@ -500,7 +500,7 @@
 							<span class="ps-text-red-600 ps-font-bold">PRESTIGIO S.R.L.</span>
 							llevamos más de
 							<span class="ps-text-white ps-font-bold"
-								>30 años consolidándonos </span
+								>En 30 años consolidándonos </span
 							>, como una empresa referente en el sector de seguridad. Desde
 							nuestra fundación, nos hemos comprometido a ofrecer un servicio
 							diferencial, adaptado a las necesidades específicas de cada
@@ -1131,7 +1131,7 @@
 						></i>
 						<span class="ps-text-white ps-font-semibold">
 							Más de
-							<span class="ps-text-red-600 ps-font-bold">28 años</span>
+							<span class="ps-text-red-600 ps-font-bold">30 años</span>
 							protegiendo lo que más valoras
 						</span>
 					</div>
