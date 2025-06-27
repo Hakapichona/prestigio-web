@@ -58,6 +58,7 @@
 
 <template>
 	<header
+		v-bind="$attrs"
 		class="ps-fixed ps-top-0 ps-w-full ps-bg-black/80 ps-backdrop-blur ps-flex ps-justify-between ps-items-center ps-p-4 ps-z-50"
 	>
 		<!-- Logo -->
@@ -88,9 +89,12 @@
 
 		<!-- Botón de contacto (visible en escritorio) -->
 		<button
+			href="https://wa.link/3kygvg"
+			target="_blank"
+			rel="noopener noreferrer"
 			class="ps-hidden md:ps-block ps-bg-red-600 ps-text-white ps-px-4 ps-py-2 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300"
 		>
-			Contáctanos
+			Prestigio Seguridad
 		</button>
 
 		<!-- Botón de menú hamburguesa (visible en móvil) -->
@@ -153,7 +157,7 @@
 					rel="noopener noreferrer"
 					class="ps-bg-red-600 ps-text-white ps-px-6 ps-py-3 ps-rounded ps-hover:ps-bg-red-700 ps-transition-colors ps-duration-300 inline-block"
 				>
-					Contáctanos
+					Prestigio Seguridad
 				</a>
 			</div>
 		</nav>
@@ -171,10 +175,6 @@
 
 	<!-- Espacio para compensar el header fijo -->
 	<div class="ps-h-24"></div>
-
-	<div v-if="!$vuetify.display.mdAndUp">
-		<test />
-	</div>
 </template>
 
 <style scoped>
