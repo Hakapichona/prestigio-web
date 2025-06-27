@@ -3,7 +3,6 @@ import "dayjs/locale/es";
 export default defineNuxtConfig({
   ssr: false,
 
-
   app: {
     head: {
       title: "Prestigio Seguridad",
@@ -23,11 +22,6 @@ export default defineNuxtConfig({
     },
   },
 
-  devServer: {
-    host: "localhost",
-    port: 8080,
-  },
-
   components: [
     {
       path: "~/components",
@@ -35,7 +29,7 @@ export default defineNuxtConfig({
     },
   ],
 
-  modules: ["@nuxtjs/tailwindcss", "nuxt-svgo", "dayjs-nuxt", '@pinia/nuxt'],
+  modules: ["@nuxtjs/tailwindcss", "nuxt-svgo", "dayjs-nuxt", "@pinia/nuxt"],
 
   svgo: {
     autoImportPath: "./assets/svg/",
@@ -75,18 +69,14 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      environment: "DEVELOPMENT",
-      apiBaseUrl: process.env.NUXT_PUBLIC_API_URL,
+      environment: "PRODUCTION",
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL,
     },
   },
-
-
 
   pinia: {
     storesDirs: ["~/stores/**", "~/stores/**", "@/stores/**"],
   },
-
-
 
   compatibilityDate: "2024-11-01",
 });
