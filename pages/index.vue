@@ -497,10 +497,14 @@
 							Nuestra Historia
 						</h3>
 						<p class="ps-text-gray-300 ps-text-lg ps-leading-relaxed ps-mb-6">
-							<span class="ps-text-red-600 ps-font-bold">PRESTIGIO S.R.L.</span>
+							En
+
+							<span class="ps-text-red-600 ps-font-bold">
+								PRESTIGIO S.R.L.</span
+							>
 							llevamos más de
 							<span class="ps-text-white ps-font-bold"
-								>En 30 años consolidándonos </span
+								>30 años consolidándonos </span
 							>, como una empresa referente en el sector de seguridad. Desde
 							nuestra fundación, nos hemos comprometido a ofrecer un servicio
 							diferencial, adaptado a las necesidades específicas de cada
@@ -1415,7 +1419,7 @@
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-phone ps-text-red-600 ps-mr-3 ps-mt-1"></i>
-								<span>+595 992 207 720 </span>
+								<span>+595 994 399514 </span>
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-email ps-text-red-600 ps-mr-3 ps-mt-1"></i>
