@@ -1192,7 +1192,7 @@
 									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
 										Teléfono
 									</h4>
-									<p class="ps-text-gray-300">+595994 399 514</p>
+									<p class="ps-text-gray-300">+595 994 399 514</p>
 								</div>
 							</div>
 
