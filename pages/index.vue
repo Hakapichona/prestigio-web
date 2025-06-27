@@ -11,6 +11,7 @@
 	import client15 from "../assets/img/client/15.png";
 	import client16 from "../assets/img/client/16.png";
 	import client17 from "../assets/img/client/17.png";
+	import client18 from "../assets/img/client/18.png";
 	import client2 from "../assets/img/client/2.png";
 	import client3 from "../assets/img/client/3.png";
 	import client4 from "../assets/img/client/4.png";
@@ -290,6 +291,7 @@
 	const clients = [
 		{ name: "", logo: client1 },
 		{ name: "", logo: client2 },
+		{ name: "", logo: client18 },
 		{ name: "", logo: client3 },
 		{ name: "", logo: client4 },
 		{ name: "", logo: client5 },
@@ -1413,7 +1415,7 @@
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-phone ps-text-red-600 ps-mr-3 ps-mt-1"></i>
-								<span>+595 994 399514 </span>
+								<span>+595 992 207 720 </span>
 							</li>
 							<li class="ps-flex ps-items-start">
 								<i class="mdi mdi-email ps-text-red-600 ps-mr-3 ps-mt-1"></i>
