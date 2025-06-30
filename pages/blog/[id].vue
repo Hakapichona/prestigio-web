@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import ParticlesBackground from "@/components/ParticlesBackground.vue";
 	import { useRoute, useRouter } from "vue-router";
+	import logo from "../assets/img/logoprestigio.png";
 	// Blog posts (en una aplicación real, esto probablemente vendría de una API)
 	const blogPosts = [
 		{
@@ -8,11 +9,11 @@
 			title: "Fortalezas de la Seguridad Física",
 			category: "Infraestructura",
 			date: "20 Abr, 2025",
-			author: "Carlos Mendoza",
+			author: "",
 			readTime: "5 min",
 			excerpt:
 				"Descubra cómo fortalecer su perímetro con estrategias comprobadas.",
-			image: "https://via.placeholder.com/1200x600",
+			image: logo,
 			content: `
       <p class="ps-text-xl ps-leading-relaxed ps-mb-6">
         La seguridad física sigue siendo un componente fundamental en cualquier estrategia de protección integral. A pesar de los avances tecnológicos, las barreras físicas y los controles de acceso tangibles continúan siendo la primera línea de defensa contra intrusiones no autorizadas.
@@ -110,11 +111,11 @@
 			title: "Control de Accesos Moderno",
 			category: "Tecnología",
 			date: "05 Mar, 2025",
-			author: "Ana Martínez",
+			author: "",
 			readTime: "7 min",
 			excerpt:
 				"Implementaciones de control de acceso para instalaciones críticas.",
-			image: "https://via.placeholder.com/1200x600",
+			image: logo,
 			content: `
       <p class="ps-text-xl ps-leading-relaxed ps-mb-6">
         Los sistemas de control de acceso han evolucionado dramáticamente en la última década, transformándose de simples cerraduras y llaves a ecosistemas inteligentes que combinan hardware avanzado, software sofisticado y análisis de datos en tiempo real.
@@ -213,10 +214,10 @@
 			title: "Rondas Efectivas",
 			category: "Operaciones",
 			date: "18 Feb, 2025",
-			author: "Roberto Sánchez",
+			author: "",
 			readTime: "6 min",
 			excerpt: "Mejores prácticas para patrullaje móvil y disuasión.",
-			image: "https://via.placeholder.com/1200x600",
+			image: logo,
 			content: `
       <p class="ps-text-xl ps-leading-relaxed ps-mb-6">
         Las rondas de seguridad siguen siendo un componente esencial en cualquier estrategia de protección, proporcionando un elemento humano insustituible que complementa las tecnologías de seguridad más avanzadas.
@@ -419,11 +420,10 @@
 						{{ post.title }}
 					</h1>
 
-					<div class="ps-flex ps-items-center ps-mb-8">
+					<!-- <div class="ps-flex ps-items-center ps-mb-8">
 						<div
 							class="ps-w-10 ps-h-10 ps-rounded-full ps-bg-gray-700 ps-mr-3 ps-overflow-hidden"
 						>
-							<!-- Imagen de perfil del autor (placeholder) -->
 							<img
 								src="https://via.placeholder.com/100x100"
 								alt="Autor"
@@ -431,7 +431,7 @@
 							/>
 						</div>
 						<span>Por {{ post.author }}</span>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- Imagen destacada -->
@@ -453,7 +453,7 @@
 						></div>
 
 						<!-- Compartir -->
-						<div class="ps-mt-12 ps-pt-8 ps-border-t ps-border-gray-800">
+						<!-- <div class="ps-mt-12 ps-pt-8 ps-border-t ps-border-gray-800">
 							<h3 class="ps-text-xl ps-font-bold ps-mb-4">
 								Compartir este artículo
 							</h3>
@@ -483,7 +483,7 @@
 									<i class="ps-text-lg">@</i>
 								</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 
 					<!-- Barra lateral -->
@@ -576,7 +576,7 @@
 
 		<!-- CTA -->
 		<section class="ps-py-16 ps-bg-gray-900 ps-relative">
-			<div class="ps-container ps-mx-auto ps-px-6">
+			<!-- <div class="ps-container ps-mx-auto ps-px-6">
 				<div
 					class="ps-bg-gray-800 ps-rounded-lg ps-p-8 md:ps-p-12 ps-relative ps-overflow-hidden"
 				>
@@ -602,7 +602,6 @@
 						</button>
 					</div>
 
-					<!-- Efecto de partículas de fondo -->
 					<div class="ps-absolute ps-inset-0 ps-pointer-events-none">
 						<div
 							v-for="i in 10"
@@ -612,7 +611,7 @@
 						></div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</section>
 
 		<!-- Footer -->
@@ -622,11 +621,7 @@
 					class="ps-flex ps-flex-col md:ps-flex-row ps-justify-between ps-items-center"
 				>
 					<div class="ps-mb-6 md:ps-mb-0">
-						<img
-							src="https://via.placeholder.com/150x50"
-							alt="Prestigio Seguridad"
-							class="ps-h-12"
-						/>
+						<img :src="logo" alt="Prestigio Seguridad" class="ps-h-12" />
 					</div>
 					<div class="ps-flex ps-space-x-6">
 						<a
