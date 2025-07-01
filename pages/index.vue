@@ -504,7 +504,7 @@
 							>
 							llevamos más de
 							<span class="ps-text-white ps-font-bold"
-								>30 años consolidándonos </span
+								>30 años consolidándonos</span
 							>, como una empresa referente en el sector de seguridad. Desde
 							nuestra fundación, nos hemos comprometido a ofrecer un servicio
 							diferencial, adaptado a las necesidades específicas de cada
