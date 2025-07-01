@@ -450,7 +450,7 @@ onMounted(() => {
               >
               llevamos más de
               <span class="ps-text-white ps-font-bold"
-                >30 años consolidándonos </span
+                >30 años consolidándonos</span
               >, como una empresa referente en el sector de seguridad. Desde
               nuestra fundación, nos hemos comprometido a ofrecer un servicio
               diferencial, adaptado a las necesidades específicas de cada
@@ -1128,19 +1128,19 @@ onMounted(() => {
                 </div>
               </div>
 
-							<div class="ps-flex ps-items-start">
-								<div
-									class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4 ps-shrink-0"
-								>
-									<i class="mdi mdi-phone ps-text-white ps-text-2xl"></i>
-								</div>
-								<div>
-									<h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
-										Teléfono
-									</h4>
-									<p class="ps-text-gray-300">+595 994 399 514</p>
-								</div>
-							</div>
+              <div class="ps-flex ps-items-start">
+                <div
+                  class="ps-bg-red-600 ps-rounded-full ps-p-3 ps-mr-4 ps-shrink-0"
+                >
+                  <i class="mdi mdi-phone ps-text-white ps-text-2xl"></i>
+                </div>
+                <div>
+                  <h4 class="ps-text-lg ps-font-semibold ps-text-white ps-mb-1">
+                    Teléfono
+                  </h4>
+                  <p class="ps-text-gray-300">+595 994 399 514</p>
+                </div>
+              </div>
 
               <div class="ps-flex ps-items-start">
                 <div
